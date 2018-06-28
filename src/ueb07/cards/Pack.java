@@ -19,6 +19,7 @@ public class Pack {
      */
     public Pack() {
         //TODO insert code
+        this.list = null;
     }
 
     /**
