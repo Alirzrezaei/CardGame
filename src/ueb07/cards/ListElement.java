@@ -47,18 +47,19 @@ public class ListElement implements List {
     @Override
     public List getNext() {
         assert (this != null);
+        //assert(this.next != null);
         return this.next;
     }
 
     /**
-     * Dtermines if the list is empty
+     * Determines if the list is empty
      *
      * @return true, if the list is empty
      */
     @Override
     public boolean isEmpty() {
-        return this == null;
-        //return false;
+        //return this == null;
+        return false;
     }
 
     /**
@@ -79,7 +80,16 @@ public class ListElement implements List {
      */
     @Override
     public boolean contains(Card card) {
-        return this.getCard() == card;
+        assert(card != null); // need?
+        if (this.getCard() == card) {
+            return true;
+        } else if (this.next != null) {
+            return this.next.contains(card);
+
+        } else {
+            return false;
+
+        }
     }
 
     /**
@@ -92,9 +102,18 @@ public class ListElement implements List {
      */
     @Override
     public List add(Card card) {
-        this.next = this.next.add(card);
-        return this;
-
+        if (this.getCard().ordinal() > card.ordinal()) {
+            ListElement newElement = new ListElement(card);
+            newElement.setNext(this);
+            return newElement;
+        } else if (this.next == null) {//card is greater than this
+            ListElement newElement = new ListElement(card);
+            this.next = newElement;
+            return this;
+        } else {
+            this.next = this.next.add(card);
+            return this;
+        }
     }
 
     /**
@@ -104,8 +123,14 @@ public class ListElement implements List {
      * @return the card at the index, null, if the index is not valid
      */
     @Override
-    public Card getCardAt(int idx) {//????
-        return null;
+    public Card getCardAt(int idx) {
+        if (idx == 0) {
+            return this.value;
+        } else if (idx > 0 && this.next != null) {
+            return this.next.getCardAt(idx - 1);
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -117,7 +142,17 @@ public class ListElement implements List {
      */
     @Override
     public Card getFirstCardWithValue(int value) {
-        return null;
+        if (value >= 7 && value <= 14) {
+            if (this.value.getValue() == value) {
+                return this.value;
+            } else if (this.next != null) {
+                return this.next.getFirstCardWithValue(value);
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -128,7 +163,14 @@ public class ListElement implements List {
      */
     @Override
     public List remove(Card card) {//????
-        return this;
+         if (this.value == value) {
+            return this.next;
+        } else {
+            if (this.next != null) {
+                this.next = this.next.remove(card);
+            }
+            return this;
+        }
     }
 
     /**
@@ -139,8 +181,14 @@ public class ListElement implements List {
      * @return new head of the list
      */
     @Override
-    public List remove(int idx) {//from chapter
-        return this;
+    public List remove(int idx) {
+        if (idx == 0) {
+            return this.next;
+        } else if (idx > 0 && this.next != null) {
+            return  this.next.remove(idx - 1);   
+        } else {
+            return this;
+        }
     }
 
     /**
@@ -150,7 +198,13 @@ public class ListElement implements List {
      */
     @Override
     public Card[] toArray() {
-        return new Card[]{};
+          Card[] values = new Card[this.size()];
+        if (!isEmpty()) {
+            for (int i = 0; i < values.length; i++) {
+                values[i] = this.getCardAt(i);
+            }
+        }
+        return values;
     }
 
     /**
@@ -162,7 +216,13 @@ public class ListElement implements List {
      */
     @Override
     public String toString() {
-        return " ";
+        if (this.next == null) {
+            return "" + this.getCard();
+        } else {
+
+            return this.getCard()+ ", " + this.next.toString();
+        }
+
     }
 
 }
