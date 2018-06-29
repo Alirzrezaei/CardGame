@@ -10,6 +10,13 @@ public class ListElement implements List {
     private List next;
 
     /**
+     * default constructor
+     */
+    ListElement() {
+        
+    }
+
+    /**
      * Construct the listElement with the given value in the list
      *
      * @param value
@@ -58,7 +65,6 @@ public class ListElement implements List {
      */
     @Override
     public boolean isEmpty() {
-        //return this == null;
         return false;
     }
 
@@ -69,6 +75,7 @@ public class ListElement implements List {
      */
     @Override
     public int size() {
+        assert(this != null);
         return 1 + this.next.size();
     }
 
@@ -80,7 +87,7 @@ public class ListElement implements List {
      */
     @Override
     public boolean contains(Card card) {
-        assert(card != null); // need?
+        assert (card != null); // need?
         if (this.getCard() == card) {
             return true;
         } else if (this.next != null) {
@@ -102,11 +109,14 @@ public class ListElement implements List {
      */
     @Override
     public List add(Card card) {
+        assert (card != null); // need?
+        assert(this != null);
         if (this.getCard().ordinal() > card.ordinal()) {
             ListElement newElement = new ListElement(card);
             newElement.setNext(this);
-            return newElement;
-        } else if (this.next == null) {//card is greater than this
+            return newElement;  
+            } 
+        else if (this.next == null) {//card is greater than this
             ListElement newElement = new ListElement(card);
             this.next = newElement;
             return this;
@@ -163,7 +173,8 @@ public class ListElement implements List {
      */
     @Override
     public List remove(Card card) {//????
-         if (this.value == value) {
+        assert (card != null); // need?
+        if (this.value == value) {
             return this.next;
         } else {
             if (this.next != null) {
@@ -185,7 +196,7 @@ public class ListElement implements List {
         if (idx == 0) {
             return this.next;
         } else if (idx > 0 && this.next != null) {
-            return  this.next.remove(idx - 1);   
+            return this.next.remove(idx - 1);
         } else {
             return this;
         }
@@ -198,7 +209,7 @@ public class ListElement implements List {
      */
     @Override
     public Card[] toArray() {
-          Card[] values = new Card[this.size()];
+        Card[] values = new Card[this.size()];
         if (!isEmpty()) {
             for (int i = 0; i < values.length; i++) {
                 values[i] = this.getCardAt(i);
@@ -220,7 +231,7 @@ public class ListElement implements List {
             return "" + this.getCard();
         } else {
 
-            return this.getCard()+ ", " + this.next.toString();
+            return this.getCard() + ", " + this.next.toString();
         }
 
     }

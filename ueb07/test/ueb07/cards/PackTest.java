@@ -39,6 +39,7 @@ public class PackTest {
     @Test
     public void testGetFirstCard() {
         Pack pack = new Pack(new Card[] {NINE_DIAMONDS, QUEEN_SPADES});
+        assertEquals(2, pack.size());
         assertEquals(NINE_DIAMONDS, pack.getFirstCard());
     }
     @Test
