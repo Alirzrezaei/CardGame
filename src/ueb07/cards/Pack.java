@@ -14,12 +14,13 @@ public class Pack {
      */
     private List list;
 
+    
     /**
      * Intitializes the list of the head with an empty element.
      */
     public Pack() {
         //TODO insert code
-        this.list = null;
+        this.list = new EmptyElement();
     }
 
     /**
@@ -28,7 +29,9 @@ public class Pack {
      * @param cards cards to be included in the list
      */
     public Pack(Card[] cards) {
-        //TODO insert code
+        assert (this != null);
+        assert (cards != null) : "There is no cards";
+        this.addElementArray(cards);
     }
 
     /**
@@ -38,7 +41,11 @@ public class Pack {
      */
     public int size() {
         //TODO insert code
-        return -1;
+        if (this.list == null) {
+            return 0;
+        } else {
+            return list.size();
+        }
     }
 
     /**
@@ -49,7 +56,12 @@ public class Pack {
      */
     public boolean contains(Card card) {
         //TODO insert code
-        return false;
+        if (this.list != null) {
+            assert (card != null) : "The card has no value";
+            return this.contains(card);
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -58,7 +70,13 @@ public class Pack {
      * @param card card to be added
      */
     public void add(Card card) {
-        //TODO insert code
+        assert (card != null) : "The card has no value";
+        if(this.list == null){  
+            this.list  = new ListElement(card);
+        }else{
+            this.list.add(card);
+        }
+        
     }
 
     /**
@@ -67,7 +85,9 @@ public class Pack {
      * @return card with the lowest value
      */
     public Card getFirstCard() {
-        //TODO insert code
+        if(this.list != null){
+            return this.list.getFirstCardWithValue(0);
+        }
         return null;
     }
 
@@ -160,5 +180,11 @@ public class Pack {
     public String toString() {
         //TODO insert code        
         return null;
+    }
+    private void addElementArray(Card[] cards){
+        for(int i = 0; i < cards.length; i++) {
+            this.add(cards[i]);
+        }
+
     }
 }

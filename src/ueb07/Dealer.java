@@ -11,12 +11,10 @@ import ueb07.cards.Card;
  *
  * @author ite102770
  */
-public class Dealer extends Player {
+public class Dealer  {
     
     
-    Dealer(){
-        Player dealer = new Player();
-    }
+   
      /**
      * Returns all the cards a player want to play. These cards are removed from
      * his/her pack. If a player cannot play any card, an empty array is
@@ -26,9 +24,9 @@ public class Dealer extends Player {
      * @return all cards that the player wants to play, an empty array if he
      * cannto play any card, null if he does not have any cards left      *
      */
-    @Override
+    //@Override
     public Card[] choose(Card[] cardsToTop){
-        
+        return new Card[0];
     }
     
 }
