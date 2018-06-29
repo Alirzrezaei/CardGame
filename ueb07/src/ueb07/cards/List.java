@@ -18,7 +18,7 @@ public interface List {
     Card getCard();
 
     /**
-     * Returns the next element. Liefert das nächste Element. A call to assert
+     * Returns the next element. A call to assert
      * ensures that this method is not called for the empty element.
      *
      * @return the next element, null if the element is empty
@@ -26,7 +26,7 @@ public interface List {
     List getNext();
 
     /**
-     * Dtermines if the list is empty
+     * Determines if the list is empty
      *
      * @return true, if the list is empty
      */

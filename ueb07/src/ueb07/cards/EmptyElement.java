@@ -13,16 +13,17 @@ public class EmptyElement implements List {
      * @return the payload of the element, null if the element is empty
      */
     @Override
-    public Card getCard() {
+     public Card getCard() {
         return null;
     }
 
     /**
-     * Returns the next element. Liefert das nächste Element. A call to assert
+     * Returns the next element. A call to assert
      * ensures that this method is not called for the empty element.
      *
      * @return the next element, null if the element is empty
      */
+    @Override
     public List getNext() {
         return null;
     }
