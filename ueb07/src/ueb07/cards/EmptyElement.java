@@ -35,7 +35,9 @@ public class EmptyElement implements List {
      */
     @Override
     public boolean isEmpty() {
+        if(this == null){
         return true;
+        }else return false;
     }
 
     /**
@@ -45,7 +47,7 @@ public class EmptyElement implements List {
      */
     @Override
     public int size() {
-        return 0;
+        return 0;     
     }
 
     /**
