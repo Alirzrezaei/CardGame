@@ -13,7 +13,7 @@ public class ListElement implements List {
      * default constructor
      */
     ListElement() {
-        
+
     }
 
     /**
@@ -25,10 +25,20 @@ public class ListElement implements List {
         this.value = value;
     }
 
+    /**
+     * setting the given card
+     *
+     * @param value
+     */
     public void setValue(Card value) {
         this.value = value;
     }
 
+    /**
+     * setting the next of the given list
+     *
+     * @param next
+     */
     public void setNext(List next) {
         this.next = next;
     }
@@ -65,7 +75,7 @@ public class ListElement implements List {
      */
     @Override
     public boolean isEmpty() {
-        assert(this != null);
+        assert (value != null);
         return false;
     }
 
@@ -76,11 +86,10 @@ public class ListElement implements List {
      */
     @Override
     public int size() {
-        assert(this != null): "There is not element in our list";
-        if (this.next == null){
+        assert (value != null) : "There is not element in our list";
+        if (this.next == null) {
             return 1;
-        }   
-        else{
+        } else {
             return 1 + this.next.size();
         }
     }
@@ -89,20 +98,18 @@ public class ListElement implements List {
      * Checks if the card exists in the list.
      *
      * @param card card to be searched
-     * @return true, if the card is in the list
-     * //if the type of the specified element is incompatible with this list (optional)
+     * @return true, if the card is in the list //if the type of the specified
+     * element is incompatible with this list (optional)
      */
     @Override
     public boolean contains(Card card) {
-        assert (card != null); 
+        assert (card != null);
         if (this.getCard() == card) {
             return true;
         } else if (this.next != null) {
             return this.next.contains(card);
-
         } else {
             return false;
-
         }
     }
 
@@ -117,13 +124,12 @@ public class ListElement implements List {
     @Override
     public List add(Card card) {
         assert (card != null); // need?
-        assert(this != null);
+        assert (this != null);
         if (card.ordinal() <= this.value.ordinal()) {
             ListElement newElement = new ListElement(card);
             newElement.setNext(this);
-            return newElement;  
-            } 
-        else if (this.next == null) {//card is greater than this
+            return newElement;
+        } else if (this.next == null) {//card is greater than this
             ListElement newElement = new ListElement(card);
             this.next = newElement;
             return this;
@@ -138,7 +144,8 @@ public class ListElement implements List {
      *
      * @param idx index of the card to be returned
      * @return the card at the index, null, if the index is not valid
-     * //IndexOutOfBoundsException - if the index is out of range (index < 0 || index >= size())
+     * //IndexOutOfBoundsException - if the index is out of range (index < 0 || index
+     * >= size())
      */
     @Override
     public Card getCardAt(int idx) {
@@ -178,13 +185,6 @@ public class ListElement implements List {
      *
      * @param card card to be removed
      * @return head of the list
-     * boolean remove(Object o)
-        //Removes the first occurrence of the specified element from this list, 
-        * if it is present (optional operation). If this list does not contain the element,
-        * it is unchanged. More formally, removes the element with the lowest index i such that
-        * (o==null ? get(i)==null : o.equals(get(i))) (if such an element exists).
-        * Returns true if this list contained the specified element
-        * (or equivalently, if this list changed as a result of the call).
      */
     @Override
     public List remove(Card card) {//????

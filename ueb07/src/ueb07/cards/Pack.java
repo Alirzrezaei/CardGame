@@ -14,7 +14,6 @@ public class Pack {
      */
     private List list;
 
-    
     /**
      * Intitializes the list of the head with an empty element.
      */
@@ -71,12 +70,12 @@ public class Pack {
      */
     public void add(Card card) {
         assert (card != null) : "The card has no value";
-        if(this.list == null){  
-            this.list  = new ListElement(card);
-        }else{
+        if (this.list == null) {
+            this.list = new ListElement(card);
+        } else {
             this.list.add(card);
         }
-        
+
     }
 
     /**
@@ -85,10 +84,13 @@ public class Pack {
      * @return card with the lowest value
      */
     public Card getFirstCard() {
-        if(this.list != null){
-            return this.list.getFirstCardWithValue(0);
+        assert (this != null);
+        if (this.getCardAt(0) == null) {
+            return null;
+
+        } else {
+            return this.list.getFirstCardWithValue(getCardAt(0).getValue());
         }
-        return null;
     }
 
     /**
@@ -98,9 +100,11 @@ public class Pack {
      * @return the card at the idx, null if idx is not valid
      */
     public Card getCardAt(int idx) {
-         if(this.list != null){
-            return this.list.getCardAt(0);
-        }else return null;
+        if (this.list != null) {
+            return this.list.getCardAt(idx);
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -111,8 +115,11 @@ public class Pack {
      * exists
      */
     public Card getCardWithValue(int value) {
-        //TODO insert code        
-        return null;
+        if (this.list != null) {
+            return this.list.getFirstCardWithValue(value);
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -123,12 +130,18 @@ public class Pack {
      * value exist
      */
     public Card[] getCardsWithValue(int value) {
-        //TODO insert code
-        return null;
+        //if (value >= 7 && value <= 14) {
+        Card[] values = new Card[this.size()];
+        if (this.list != null) {
+            for (int i = 0; i < this.size(); i++) {
+                values[i] = this.getCardAt(i);
+            }
+        }
+        return values;
     }
 
     /**
-     * Liefert die kleinste Karte aus dem Pack, die einen höheren Wert hat.
+     *
      * Returns the smallest card from the pack that has a higher value.
      *
      * @param value value to be surpassed
@@ -136,8 +149,8 @@ public class Pack {
      * no card with a higher value exists
      */
     public Card getCardWithValueHigherThan(int value) {
-        //TODO insert code
-        return null;
+        
+       return null;
     }
 
     /**
@@ -182,8 +195,9 @@ public class Pack {
         //TODO insert code        
         return null;
     }
-    private void addElementArray(Card[] cards){
-        for(int i = 0; i < cards.length; i++) {
+
+    private void addElementArray(Card[] cards) {
+        for (int i = 0; i < cards.length; i++) {
             this.add(cards[i]);
         }
 
