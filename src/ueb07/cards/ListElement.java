@@ -65,6 +65,7 @@ public class ListElement implements List {
      */
     @Override
     public boolean isEmpty() {
+        assert(this != null);
         return false;
     }
 
@@ -75,8 +76,13 @@ public class ListElement implements List {
      */
     @Override
     public int size() {
-        assert(this != null);
-        return 1 + this.next.size();
+        assert(this != null): "There is not element in our list";
+        if (this.next == null){
+            return 1;
+        }   
+        else{
+            return 1 + this.next.size();
+        }
     }
 
     /**
@@ -84,10 +90,11 @@ public class ListElement implements List {
      *
      * @param card card to be searched
      * @return true, if the card is in the list
+     * //if the type of the specified element is incompatible with this list (optional)
      */
     @Override
     public boolean contains(Card card) {
-        assert (card != null); // need?
+        assert (card != null); 
         if (this.getCard() == card) {
             return true;
         } else if (this.next != null) {
@@ -111,7 +118,7 @@ public class ListElement implements List {
     public List add(Card card) {
         assert (card != null); // need?
         assert(this != null);
-        if (this.getCard().ordinal() > card.ordinal()) {
+        if (card.ordinal() <= this.value.ordinal()) {
             ListElement newElement = new ListElement(card);
             newElement.setNext(this);
             return newElement;  
@@ -131,6 +138,7 @@ public class ListElement implements List {
      *
      * @param idx index of the card to be returned
      * @return the card at the index, null, if the index is not valid
+     * //IndexOutOfBoundsException - if the index is out of range (index < 0 || index >= size())
      */
     @Override
     public Card getCardAt(int idx) {
@@ -170,11 +178,18 @@ public class ListElement implements List {
      *
      * @param card card to be removed
      * @return head of the list
+     * boolean remove(Object o)
+        //Removes the first occurrence of the specified element from this list, 
+        * if it is present (optional operation). If this list does not contain the element,
+        * it is unchanged. More formally, removes the element with the lowest index i such that
+        * (o==null ? get(i)==null : o.equals(get(i))) (if such an element exists).
+        * Returns true if this list contained the specified element
+        * (or equivalently, if this list changed as a result of the call).
      */
     @Override
     public List remove(Card card) {//????
         assert (card != null); // need?
-        if (this.value == value) {
+        if (this.value == card) {
             return this.next;
         } else {
             if (this.next != null) {

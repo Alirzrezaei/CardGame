@@ -98,8 +98,9 @@ public class Pack {
      * @return the card at the idx, null if idx is not valid
      */
     public Card getCardAt(int idx) {
-        //TODO insert code        
-        return null;
+         if(this.list != null){
+            return this.list.getCardAt(0);
+        }else return null;
     }
 
     /**

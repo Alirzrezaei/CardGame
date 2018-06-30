@@ -14,24 +14,47 @@ import static org.junit.Assert.*;
  */
 public class ListElementTest {
     
-     private Element createElements(char... value){
-        if (value.length == 0) {
-            return null;
-        }
-        // create a new element
-        Element el = new Element(value[0]);
-        Element firstEl = el; // remember first element
-        
-        // create more elements
-        for (int i = 1; i < value.length; i++) {
-            el.setNext(new Element()) ;
-            el = el.getNext();
-             el.setValue(value[i]);
-        }
-        return firstEl;       
+    
+    @Test
+    public void testGetCardAt() {
+        List ls = new ListElement(Card.EIGHT_CLUBS);
+        assertEquals(1, ls.size());
+        assertEquals(Card.EIGHT_CLUBS, ls.getCardAt(0));
     }
     @Test
-    public void testSomeMethod() {
+    public void testAddValue() {
+        List ls = new ListElement(Card.JACK_HEARTS);
+        assertEquals(1, ls.size());
+        ls = ls.add(Card.ACE_HEARTS);
+        ls = ls.add(Card.EIGHT_DIAMONDS);
+        assertEquals(3, ls.size());
+        assertEquals(Card.EIGHT_DIAMONDS, ls.getCardAt(0));
+        assertEquals(Card.JACK_HEARTS, ls.getCardAt(1));
+        assertEquals(Card.ACE_HEARTS, ls.getCardAt(2));
     }
+    @Test
+    public void testRemoveValue() {
+        List ls = new ListElement(Card.JACK_HEARTS);
+        assertEquals(1, ls.size());
+        ls = ls.add(Card.ACE_HEARTS);
+        ls = ls.add(Card.EIGHT_DIAMONDS);
+        assertEquals(3, ls.size());
+        ls = ls.remove(Card.JACK_HEARTS);
+        assertEquals(2, ls.size());
+        assertEquals(Card.EIGHT_DIAMONDS, ls.getCardAt(0));
+        assertEquals(Card.ACE_HEARTS, ls.getCardAt(1));
+    }
+    @Test
+    public void testIsEmpty() {
+        List ls = new EmptyElement();
+        ls = ls.add(Card.ACE_HEARTS);
+        assertEquals(1, ls.size());
+        assertFalse(ls.isEmpty());
+        ls = ls.remove(Card.ACE_HEARTS);
+        //assertTrue(ls.isEmpty());
+        assertEquals(0, ls.size());
+    }
+    
+    
     
 }
