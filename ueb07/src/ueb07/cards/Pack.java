@@ -130,11 +130,15 @@ public class Pack {
      * value exist
      */
     public Card[] getCardsWithValue(int value) {
-        //if (value >= 7 && value <= 14) {
+
         Card[] values = new Card[this.size()];
-        if (this.list != null) {
+        int j = 0;
+        if (this.list != null && value >= 7 && value <= 14) {
             for (int i = 0; i < this.size(); i++) {
-                values[i] = this.getCardAt(i);
+                if (this.getCardAt(i).getValue() == value) {//hasSameValue method use
+                    values[j] = this.getCardAt(i);
+                    j++;
+                }
             }
         }
         return values;
@@ -149,17 +153,21 @@ public class Pack {
      * no card with a higher value exists
      */
     public Card getCardWithValueHigherThan(int value) {
-        
-       return null;
-    }
 
+        if (this.list != null) {
+            return this.list.getFirstCardWithValue(value);
+        } else {
+            return null;
+        }
+    }
     /**
      * Removes a card, if it is contained.
      *
      * @param card card to be removed
      */
     public void remove(Card card) {
-        //TODO insert code
+        assert(this.list != null);
+        this.list.remove(card);
     }
 
     /**
