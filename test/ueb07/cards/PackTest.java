@@ -81,6 +81,7 @@ public class PackTest {
         assertNull(pack.getCardWithValue(8));
         assertNull(pack.getCardWithValue(10));
         assertNull(pack.getCardWithValue(13));
+        assertNull(pack.getCardWithValue(-1));
     }
 
     /**
