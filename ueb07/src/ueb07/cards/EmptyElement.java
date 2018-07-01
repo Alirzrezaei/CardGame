@@ -137,6 +137,6 @@ public class EmptyElement implements List {
      */
     @Override
     public String toString() {
-        return " ";
+        return "";
     }
 }

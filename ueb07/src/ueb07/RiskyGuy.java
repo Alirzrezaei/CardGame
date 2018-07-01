@@ -5,10 +5,23 @@
  */
 package ueb07;
 
+import ueb07.cards.Card;
+
 /**
  *
  * @author ite102770
  */
-public class RiskyGuy {
+public class RiskyGuy extends Player {
+
+    public RiskyGuy(String name) {
+        super(name);
+    }
+
+    @Override
+    public Card[] choose(Card[] cardsToTop) {
+        Card card[] = null;
+        
+        return card;
+    }
     
 }
