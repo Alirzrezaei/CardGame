@@ -179,7 +179,7 @@ public class Pack {
      */
     public void removeAt(int idx) {
         assert (this.list != null);
-        list = this.list.remove(idx);
+        this.list = this.list.remove(idx);
     }
 
     /**
