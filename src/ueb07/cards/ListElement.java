@@ -242,13 +242,11 @@ public class ListElement implements List {
      * at the end
      */
     @Override
-    public String toString() {
-        if (this.next == null) {
-            return "" + this.getCard();
-        } else {
-            return  this.getCard()  + this.next.toString() + ", ";
-        }
-
+    public String toString() {//print with coma at the end 
+            
+            return this.getCard()+ "," + this.next.toString();
+           
+        
     }
 
 }
