@@ -12,13 +12,12 @@ public class Pack {
     /**
      * reference to the head of the list
      */
-    private List list;
+    private List list = new EmptyElement();
 
     /**
      * Intitializes the list of the head with an empty element.
      */
     public Pack() {
-        //TODO insert code
         this.list = new EmptyElement();
     }
 
@@ -28,7 +27,6 @@ public class Pack {
      * @param cards cards to be included in the list
      */
     public Pack(Card[] cards) {
-        assert (this != null);
         assert (cards != null) : "There is no cards";
         this.addElementArray(cards);
     }
@@ -39,11 +37,10 @@ public class Pack {
      * @return number of cards
      */
     public int size() {
-        //TODO insert code
-        if (this.list == null) {
-            return 0;
+        if (this.list != null) {
+            return this.list.size();
         } else {
-            return list.size();
+            return 0;
         }
     }
 
@@ -53,14 +50,9 @@ public class Pack {
      * @param card card to be searched
      * @return true, if the card is in the pack
      */
-    public boolean contains(Card card) {
-        //TODO insert code
-        if (this.list != null) {
-            assert (card != null) : "The card has no value";
-            return this.contains(card);
-        } else {
-            return false;
-        }
+    public boolean contains(Card card) {  
+            return this.list.contains(card);
+       
     }
 
     /**
@@ -70,12 +62,7 @@ public class Pack {
      */
     public void add(Card card) {
         assert (card != null) : "The card has no value";
-        if (this.list == null) {
-            this.list = new ListElement(card);
-        } else {
-            this.list.add(card);
-        }
-
+        list = list.add(card);
     }
 
     /**
@@ -131,15 +118,23 @@ public class Pack {
      */
     public Card[] getCardsWithValue(int value) {
 
-        Card[] values = new Card[this.size()];
+        Card[] values = null;
         int j = 0;
         if (this.list != null && value >= 7 && value <= 14) {
             for (int i = 0; i < this.size(); i++) {
-                if (this.getCardAt(i).getValue() == value) {//hasSameValue method use
+                if (this.getCardAt(i).hasSameValue(value)) {
+                    j++;
+                }
+            }
+            values = new Card[j];
+            j = 0;
+            for (int i = 0; i < this.size(); i++) {
+                if (this.getCardAt(i).hasSameValue(value)) {
                     values[j] = this.getCardAt(i);
                     j++;
                 }
             }
+
         }
         return values;
     }
@@ -153,21 +148,28 @@ public class Pack {
      * no card with a higher value exists
      */
     public Card getCardWithValueHigherThan(int value) {
-
+        Card card = null;
         if (this.list != null) {
-            return this.list.getFirstCardWithValue(value);
-        } else {
-            return null;
+            for (int i = 0; i < this.size() && card == null; i++) {
+                if (this.getCardAt(i).hasHigherValue(value)) {
+                    card = this.getCardAt(i);
+                }
+            }
         }
+        return card;
     }
+
     /**
      * Removes a card, if it is contained.
      *
      * @param card card to be removed
      */
     public void remove(Card card) {
-        assert(this.list != null);
-        this.list.remove(card);
+        assert (card != null);
+        assert (this.list != null);
+       // if (this.contains(card)) {
+            list = this.list.remove(card);
+        //}
     }
 
     /**
@@ -176,7 +178,8 @@ public class Pack {
      * @param idx index of the card to be removed
      */
     public void removeAt(int idx) {
-        //TODO insert code
+        assert (this.list != null);
+        list = this.list.remove(idx);
     }
 
     /**
@@ -185,7 +188,12 @@ public class Pack {
      * @param cards cards to be removed
      */
     public void remove(Card[] cards) {
-        //TODO insert code
+        assert (cards != null): "The array is null";
+        for(int i = 0; i < cards.length; i++){
+            if(this.list.contains(cards[i])){
+                this.list = this.list.remove(cards[i]);
+            }
+        }
     }
 
     /**
@@ -194,19 +202,19 @@ public class Pack {
      * @return all cards of the pack in an array
      */
     public Card[] toArray() {
-        //TODO insert code        
-        return null;
+        return this.list.toArray();
+
     }
 
     @Override
     public String toString() {
-        //TODO insert code        
-        return null;
+        return this.list.toString();
     }
 
     private void addElementArray(Card[] cards) {
+        
         for (int i = 0; i < cards.length; i++) {
-            this.add(cards[i]);
+          list = list.add(cards[i]);
         }
 
     }

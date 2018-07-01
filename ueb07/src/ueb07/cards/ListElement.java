@@ -21,8 +21,9 @@ public class ListElement implements List {
      *
      * @param value
      */
-    ListElement(Card value) {
+    ListElement(Card value , List next) {
         this.value = value;
+        this.next = next;
     }
 
     /**
@@ -30,7 +31,7 @@ public class ListElement implements List {
      *
      * @param value
      */
-    public void setValue(Card value) {
+    private void setValue(Card value) {
         this.value = value;
     }
 
@@ -39,7 +40,7 @@ public class ListElement implements List {
      *
      * @param next
      */
-    public void setNext(List next) {
+    private void setNext(List next) {
         this.next = next;
     }
 
@@ -86,12 +87,11 @@ public class ListElement implements List {
      */
     @Override
     public int size() {
-        assert (value != null) : "There is not element in our list";
-        if (this.next == null) {
-            return 1;
-        } else {
-            return 1 + this.next.size();
-        }
+        //assert (value != null) : "There is not element in our list";  
+        if(this != null){
+            return this.next.size() + 1; 
+        }else
+            return 0;
     }
 
     /**
@@ -103,7 +103,7 @@ public class ListElement implements List {
      */
     @Override
     public boolean contains(Card card) {
-        assert (card != null);
+        assert (card != null): "The card has no value";
         if (this.getCard() == card) {
             return true;
         } else if (this.next != null) {
@@ -126,11 +126,12 @@ public class ListElement implements List {
         assert (card != null); // need?
         assert (this != null);
         if (card.ordinal() <= this.value.ordinal()) {
-            ListElement newElement = new ListElement(card);
-            newElement.setNext(this);
+            ListElement newElement = new ListElement(card , this);
+           // newElement.setNext(this);
             return newElement;
         } else if (this.next == null) {//card is greater than this
-            ListElement newElement = new ListElement(card);
+            ListElement newElement = new ListElement();
+            newElement.setValue(card);
             this.next = newElement;
             return this;
         } else {
@@ -151,7 +152,7 @@ public class ListElement implements List {
     public Card getCardAt(int idx) {
         if (idx == 0) {
             return this.value;
-        } else if (idx > 0 && this.next != null) {
+        } else if (idx > 0 && idx < this.size() && this.next != null) {
             return this.next.getCardAt(idx - 1);
         } else {
             return null;
@@ -245,8 +246,7 @@ public class ListElement implements List {
         if (this.next == null) {
             return "" + this.getCard();
         } else {
-
-            return this.getCard() + ", " + this.next.toString();
+            return  this.getCard()  + this.next.toString() + ", ";
         }
 
     }

@@ -14,16 +14,17 @@ import static org.junit.Assert.*;
  */
 public class ListElementTest {
     
-    
-    @Test
+    @Test 
     public void testGetCardAt() {
-        List ls = new ListElement(Card.EIGHT_CLUBS);
+        List ls = new ListElement();
+        ls.add(Card.ACE_HEARTS);
         assertEquals(1, ls.size());
-        assertEquals(Card.EIGHT_CLUBS, ls.getCardAt(0));
+        assertEquals(Card.ACE_HEARTS, ls.getCardAt(0));
     }
     @Test
     public void testAddValue() {
-        List ls = new ListElement(Card.JACK_HEARTS);
+        List ls = new ListElement();
+        ls.add(Card.JACK_HEARTS);
         assertEquals(1, ls.size());
         ls = ls.add(Card.ACE_HEARTS);
         ls = ls.add(Card.EIGHT_DIAMONDS);
@@ -34,7 +35,8 @@ public class ListElementTest {
     }
     @Test
     public void testRemoveValue() {
-        List ls = new ListElement(Card.JACK_HEARTS);
+        List ls = new ListElement();
+        ls.add(Card.JACK_HEARTS);
         assertEquals(1, ls.size());
         ls = ls.add(Card.ACE_HEARTS);
         ls = ls.add(Card.EIGHT_DIAMONDS);
@@ -55,7 +57,5 @@ public class ListElementTest {
         //assertTrue(ls.isEmpty());
         assertEquals(0, ls.size());
     }
-    
-    
     
 }
