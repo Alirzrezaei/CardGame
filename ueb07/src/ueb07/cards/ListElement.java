@@ -192,10 +192,8 @@ public class ListElement implements List {
         assert (card != null); // need?
         if (this.value == card) {
             return this.next;
-        } else {
-            if (this.next != null) {
-                this.next = this.next.remove(card);
-            }
+        } else {  
+                this.next = this.next.remove(card);           
             return this;
         }
     }
@@ -208,14 +206,8 @@ public class ListElement implements List {
      * @return new head of the list
      */
     @Override
-    public List remove(int idx) {
-        if (idx == 0) {
-            return this.next;
-        } else if (idx > 0 && this.next != null) {
-            return this.next.remove(idx - 1);
-        } else {
-            return this;
-        }
+    public List remove(int idx) {    
+        return remove(this.getCardAt(idx));
     }
 
     /**
