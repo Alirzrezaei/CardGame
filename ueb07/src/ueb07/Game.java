@@ -146,9 +146,9 @@ public class Game {
      */
     Player doTurn(Player player, Card[] cardsToTop) {
         assert player.getPackSize() > 0;
- 
-            if (player.choose(cardsToTop) != null) {
-               cardsToTop = player.choose(cardsToTop);
+            
+            if (player.choose(cardsToTop).length > 0) {
+               cardsOnTop = player.choose(cardsToTop);
             }
         
         return player;
@@ -168,7 +168,17 @@ public class Game {
      * @return index of the player whose turn it is
      */
     int nextPlayer(int currentPlayer, Card[] cardsToTop, int couldntLay) {
-        //TODO insert code
+        
+        if (players[currentPlayer].choose(cardsToTop).length > 0) {
+            doTurn(players[currentPlayer], cardsToTop);
+            if(cardsOnTop[0].isAce()){
+                doTurn(players[currentPlayer], cardsToTop);
+            }
+        }
+        else{
+            countCantLay = couldntLay + 1;
+        }
+        
         return currentPlayer;
     }
 
