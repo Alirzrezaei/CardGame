@@ -70,7 +70,7 @@ public class EmptyElement implements List {
      */
     @Override
     public List add(Card card) {
-        return new ListElement(card, this);//???
+        return new ListElement(card);//???
     }
 
     /**
