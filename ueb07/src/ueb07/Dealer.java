@@ -11,9 +11,19 @@ import ueb07.cards.Card;
  *
  * @author ite102770
  */
-public class Dealer  {
+public class Dealer extends Player {
     
     
+     public Dealer(String name) {
+        super(name);
+    }
+      
+
+    public Dealer(String name, Card[] cards) {
+        super(name, cards);
+    }
+
+   
    
      /**
      * Returns all the cards a player want to play. These cards are removed from
@@ -22,9 +32,9 @@ public class Dealer  {
      *
      * @param cardsToTop card(s) that has to be surpassed
      * @return all cards that the player wants to play, an empty array if he
-     * cannto play any card, null if he does not have any cards left      *
+     * cannot play any card, null if he does not have any cards left      *
      */
-    //@Override
+    @Override
     public Card[] choose(Card[] cardsToTop){
         return new Card[0];
     }
