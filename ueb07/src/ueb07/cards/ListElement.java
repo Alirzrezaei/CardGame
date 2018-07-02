@@ -2,7 +2,10 @@ package ueb07.cards;
 
 /**
  *
- * @author Reyhan
+ * This class implements the interface list with attribute type card and the
+ * next with the type List.
+ *
+ * @author ite102770
  */
 public class ListElement implements List {
 
@@ -21,7 +24,16 @@ public class ListElement implements List {
      *
      * @param value
      */
-    ListElement(Card value , List next) {
+    ListElement(Card value) {
+        this.value = value;
+    }
+
+    /**
+     * Construct the listElement with the given value in the list
+     *
+     * @param value
+     */
+    ListElement(Card value, List next) {
         this.value = value;
         this.next = next;
     }
@@ -88,10 +100,10 @@ public class ListElement implements List {
     @Override
     public int size() {
         //assert (value != null) : "There is not element in our list";  
-        if(this != null){
-            return this.next.size() + 1; 
-        }else
-            return 0;
+        //if(this != null){
+        return this.next.size() + 1;
+        //}else
+        // return 0;
     }
 
     /**
@@ -103,7 +115,7 @@ public class ListElement implements List {
      */
     @Override
     public boolean contains(Card card) {
-        assert (card != null): "The card has no value";
+        assert (card != null) : "The card has no value";
         if (this.getCard() == card) {
             return true;
         } else if (this.next != null) {
@@ -126,8 +138,8 @@ public class ListElement implements List {
         assert (card != null); // need?
         assert (this != null);
         if (card.ordinal() <= this.value.ordinal()) {
-            ListElement newElement = new ListElement(card , this);
-           // newElement.setNext(this);
+            ListElement newElement = new ListElement(card, this);
+            // newElement.setNext(this);
             return newElement;
         } else if (this.next == null) {//card is greater than this
             ListElement newElement = new ListElement();
@@ -192,8 +204,8 @@ public class ListElement implements List {
         assert (card != null); // need?
         if (this.value == card) {
             return this.next;
-        } else {  
-                this.next = this.next.remove(card);           
+        } else {
+            this.next = this.next.remove(card);
             return this;
         }
     }
@@ -206,7 +218,7 @@ public class ListElement implements List {
      * @return new head of the list
      */
     @Override
-    public List remove(int idx) {    
+    public List remove(int idx) {
         return remove(this.getCardAt(idx));
     }
 
@@ -235,10 +247,9 @@ public class ListElement implements List {
      */
     @Override
     public String toString() {//print with coma at the end 
-            
-            return this.getCard()+ "," + this.next.toString();
-           
-        
+
+        return this.getCard() + "," + this.next.toString();
+
     }
 
 }

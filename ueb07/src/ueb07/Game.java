@@ -120,7 +120,6 @@ public class Game {
             for (int j = 0; j < (int) (32 / numOfPlayer); j++) {
                 players[i].receive(dealer.choose(cardsOnTop));
             }
-
         }
         return players;
     }
@@ -147,7 +146,7 @@ public class Game {
      */
     Player doTurn(Player player, Card[] cardsToTop) {
         assert player.getPackSize() > 0;
-        //TODO insert code
+        
         return player;
     }
 
@@ -178,7 +177,6 @@ public class Game {
      * -      play according to rules and go to next player</code>
      */
     public void playGame() {
-
         //TODO insert code
     }
 

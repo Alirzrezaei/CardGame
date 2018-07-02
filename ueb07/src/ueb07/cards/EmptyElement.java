@@ -1,6 +1,7 @@
 package ueb07.cards;
 
 /**
+ * This class implements the interface list with no attrinutes.
  *
  * @author Reyhan
  */
@@ -13,13 +14,13 @@ public class EmptyElement implements List {
      * @return the payload of the element, null if the element is empty
      */
     @Override
-     public Card getCard() {
+    public Card getCard() {
         return null;
     }
 
     /**
-     * Returns the next element. A call to assert
-     * ensures that this method is not called for the empty element.
+     * Returns the next element. A call to assert ensures that this method is
+     * not called for the empty element.
      *
      * @return the next element, null if the element is empty
      */
@@ -45,7 +46,7 @@ public class EmptyElement implements List {
      */
     @Override
     public int size() {
-        return 0;     
+        return 0;
     }
 
     /**
@@ -69,7 +70,7 @@ public class EmptyElement implements List {
      */
     @Override
     public List add(Card card) {
-        return new ListElement(card , this);//???
+        return new ListElement(card, this);//???
     }
 
     /**
