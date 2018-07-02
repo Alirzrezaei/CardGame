@@ -66,6 +66,18 @@ public class Game {
         if(countOfPlayers >MAX_COUNT){
             countOfPlayers = MAX_COUNT;
         }
+        players = new Player[countOfPlayers];
+        Random r = new Random();
+        int playerType;
+        for(int i = 0; i < players.length; i++){
+            playerType = r.nextInt(2);
+            if(playerType == 0){
+                players[i] = new CautiousGuy("C"+ i);
+            }else{
+                players[i] = new RiskyGuy("R"+i);
+            }
+        }
+        
     }
 
     /**
@@ -82,7 +94,15 @@ public class Game {
      * alternatively create risky and cautious players.
      */
     Game(Card[][] packs, String riskType) {
-        //TODO insert code
+        players = new Player[packs.length];
+        for(int i = 0; i < players.length; i++){
+            if(riskType.charAt(i) == 'r'){
+                players[i] = new RiskyGuy("R"+i, packs[i]);
+            }else{
+                players[i] = new CautiousGuy("C"+i, packs[i]);
+            }
+        }
+            
     }
 //</editor-fold>
 
@@ -108,8 +128,8 @@ public class Game {
      * @return true, if the player has no more cards
      */
     boolean hasWon(Player player) {
-        //TODO insert code        
-        return false;
+        assert (player != null): "Wrong player is passed";
+        return player.getPack() == null;
     }
 
     /**
@@ -154,6 +174,7 @@ public class Game {
      * -      play according to rules and go to next player</code>
      */
     public void playGame() {
+        
         //TODO insert code
     }
 
