@@ -14,10 +14,12 @@ import static org.junit.Assert.*;
  */
 public class ListElementTest {
     
+    /**
+     *test for size
+     */
     @Test 
     public void testGetCardAt() {
-        List ls = new ListElement();
-        ls.add(Card.ACE_HEARTS);
+        List ls = new ListElement(Card.ACE_HEARTS);
         assertEquals(1, ls.size());
         assertEquals(Card.ACE_HEARTS, ls.getCardAt(0));
     }

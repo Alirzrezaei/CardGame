@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ueb07;
 
 import ueb07.cards.Card;
 
 /**
- *
+ *This class always chooses the minimum number of cards required
  * @author ite102770
  */
 public class CautiousGuy extends Player {

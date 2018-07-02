@@ -3,7 +3,9 @@ package ueb07.cards;
 import java.util.Arrays;
 
 /**
- * The cards of one player are stored in a list of type list.
+ * The class Pack, which as an attribute has the reference to a list. After
+ * creating a Pack, the reference references an EmptyElement. The cards of one
+ * player are stored in a list of type list.
  *
  * @author klk
  */
@@ -50,9 +52,9 @@ public class Pack {
      * @param card card to be searched
      * @return true, if the card is in the pack
      */
-    public boolean contains(Card card) {  
-            return this.list.contains(card);
-       
+    public boolean contains(Card card) {
+        return this.list.contains(card);
+
     }
 
     /**
@@ -134,7 +136,6 @@ public class Pack {
                     j++;
                 }
             }
-
         }
         return values;
     }
@@ -167,8 +168,8 @@ public class Pack {
     public void remove(Card card) {
         assert (card != null);
         assert (this.list != null);
-       // if (this.contains(card)) {
-            list = this.list.remove(card);
+        // if (this.contains(card)) {
+        list = this.list.remove(card);
         //}
     }
 
@@ -188,9 +189,9 @@ public class Pack {
      * @param cards cards to be removed
      */
     public void remove(Card[] cards) {
-        assert (cards != null): "The array is null";
-        for(int i = 0; i < cards.length; i++){
-            if(this.list.contains(cards[i])){
+        assert (cards != null) : "The array is null";
+        for (int i = 0; i < cards.length; i++) {
+            if (this.list.contains(cards[i])) {
                 this.list = this.list.remove(cards[i]);
             }
         }
@@ -206,15 +207,24 @@ public class Pack {
 
     }
 
+    /**
+     * return all contained cards in single line
+     *
+     * @return return list of cards
+     */
     @Override
     public String toString() {
         return this.list.toString();
     }
 
+    /**
+     * add element on array to list
+     *
+     * @param cards is given array
+     */
     private void addElementArray(Card[] cards) {
-        
         for (int i = 0; i < cards.length; i++) {
-          list = list.add(cards[i]);
+            list = list.add(cards[i]);
         }
 
     }
