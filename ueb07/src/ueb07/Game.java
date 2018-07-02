@@ -37,15 +37,30 @@ public class Game {
         return players;
     }
 
+    /**
+     * Gets the cards on top in an array
+     *
+     * @return cars on top
+     */
     Card[] getCardsToTop() {
         return cardsOnTop;
     }
 
+    /**
+     * getting the current player
+     *
+     * @return current player
+     */
     public int getCurrentPlayer() {
         return currentPlayer;
     }
 
-    public int getCountCantLay() {//??
+    /**
+     * return number of player that skipped
+     *
+     * @return number of skipped players
+     */
+    public int getCountCantLay() {
         return countCantLay;
     }
 //</editor-fold>
@@ -94,10 +109,10 @@ public class Game {
      * alternatively create risky and cautious players.
      */
     Game(Card[][] packs, String riskType) {
-        assert(packs != null): "We don't have any packs";
+        assert (packs != null) : "We don't have any packs";
         players = new Player[packs.length];
         for (int i = 0; i < players.length; i++) {
-            if (riskType!= null && riskType.charAt(i) == 'r') {
+            if (riskType != null && riskType.charAt(i) == 'r') {
                 players[i] = new RiskyGuy("R" + i, packs[i]);
             } else {
                 players[i] = new CautiousGuy("C" + i, packs[i]);
@@ -146,16 +161,16 @@ public class Game {
      */
     Player doTurn(Player player, Card[] cardsToTop) {
         assert player.getPackSize() > 0;
-            
-            if (player.choose(cardsToTop).length > 0) {
-               cardsOnTop = player.choose(cardsToTop);
-            }
-        
+
+        //if (player.choose(cardsToTop).length > 0) {
+        cardsOnTop = player.choose(cardsToTop);
+        //}
+
         return player;
     }
 
     /**
-     * Exectues all actions that are required for one move of a player:
+     * Executes all actions that are required for one move of a player:
      * determines the next player and how the he should react to the current
      * cards on top. If a player cannot surpass the current cards he has to
      * skip. If no other player can place a card, a new round is started. The
@@ -168,17 +183,21 @@ public class Game {
      * @return index of the player whose turn it is
      */
     int nextPlayer(int currentPlayer, Card[] cardsToTop, int couldntLay) {
-        
+
         if (players[currentPlayer].choose(cardsToTop).length > 0) {
             doTurn(players[currentPlayer], cardsToTop);
-            if(cardsOnTop[0].isAce()){
-                doTurn(players[currentPlayer], cardsToTop);
+            if (cardsOnTop[0].isAce()) {
+                doTurn(players[currentPlayer], null);
+            }
+            countCantLay = 0;
+        } else {
+            countCantLay = couldntLay + 1;
+            if (countCantLay == players.length) {
+                doTurn(players[currentPlayer], null);
+                countCantLay = 0;
             }
         }
-        else{
-            countCantLay = couldntLay + 1;
-        }
-        
+
         return currentPlayer;
     }
 
@@ -191,12 +210,19 @@ public class Game {
      * -      play according to rules and go to next player</code>
      */
     public void playGame() {
-        //TODO insert code
+        int countPlayer = 0;
+        while (!hasWon(players[countPlayer])) {
+            countPlayer = currentPlayer;
+            
+            dealCards();
+
+        }
+
     }
 
     @Override
     public String toString() {
-        //TODO insert code
+       
         return null;
     }
 

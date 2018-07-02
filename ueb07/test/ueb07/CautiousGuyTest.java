@@ -179,6 +179,26 @@ public class CautiousGuyTest {
         assertArrayEquals(new Card[]{Card.JACK_HEARTS, Card.JACK_SPADES}, chosen);
         assertArrayEquals(new Card[]{Card.NINE_CLUBS}, player.getPack().toArray());
     }
+     @Test
+    public void testChoose_OnEmptyStack2() {
+        Card[] cards = new Card[]{Card.EIGHT_CLUBS,Card.EIGHT_SPADES, Card.KING_HEARTS};
+
+        Player player = new CautiousGuy("Fred", cards);
+        Card[] chosen = player.choose(null);
+
+        assertArrayEquals(new Card[]{Card.EIGHT_CLUBS}, chosen);
+        assertArrayEquals(new Card[]{Card.EIGHT_SPADES, Card.KING_HEARTS}, player.getPack().toArray());
+    }
+    @Test
+    public void testChoose_OnEmptyOnTop() {
+        Card[] cards = new Card[]{Card.EIGHT_SPADES, Card.KING_HEARTS, Card.ACE_DIAMONDS};
+
+        Player player = new CautiousGuy("Fred", cards);
+        Card[] chosen = player.choose(null);
+
+        assertArrayEquals(new Card[]{Card.EIGHT_SPADES}, chosen);
+        assertArrayEquals(new Card[]{Card.KING_HEARTS, Card.ACE_DIAMONDS}, player.getPack().toArray());
+    }
 
   
 }

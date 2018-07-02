@@ -146,6 +146,15 @@ public class RiskyGuyTest {
         assertArrayEquals(new Card[]{Card.EIGHT_CLUBS, Card.EIGHT_DIAMONDS, Card.EIGHT_SPADES}, chosen);
         assertArrayEquals(new Card[]{Card.KING_HEARTS}, player.getPack().toArray());
     }
-    
+     @Test
+    public void testChoose_OnEmptyOnTop() {
+        Card[] cards = new Card[]{Card.EIGHT_SPADES, Card.KING_HEARTS, Card.ACE_DIAMONDS};
+
+        Player player = new CautiousGuy("Fred", cards);
+        Card[] chosen = player.choose(null);
+
+        assertArrayEquals(new Card[]{Card.EIGHT_SPADES}, chosen);
+        assertArrayEquals(new Card[]{Card.KING_HEARTS, Card.ACE_DIAMONDS}, player.getPack().toArray());
+    }
     
 }
