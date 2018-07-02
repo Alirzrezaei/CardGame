@@ -137,7 +137,7 @@ public class ListElement implements List {
      */
     @Override
     public List add(Card card) {
-        assert (card != null); // need?
+        assert (card != null);
         assert (this != null);
         if (card.ordinal() <= this.value.ordinal()) {
             ListElement newElement = new ListElement(card);
