@@ -34,9 +34,7 @@ public class Dealer extends Player {
     }
 
     /**
-     * Returns all the cards a player want to play. These cards are removed from
-     * his/her pack. If a player cannot play any card, an empty array is
-     * returned. If he does not have any cards left null is returned.
+     * form random function select the card and gives to the player
      *
      * @param cardsToTop card(s) that has to be surpassed
      * @return all cards that the player wants to play, an empty array if he

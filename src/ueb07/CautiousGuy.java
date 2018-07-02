@@ -56,7 +56,6 @@ public class CautiousGuy extends Player {
                 playerCard = super.getPack().getCardAt(j);
                 if (super.getPack().getCardAt(j).hasHigherValue(cardValue)) {
                     hasEnough = hasEnoughCard(playerCard, cardValue);
-
                     if (hasEnough >= cardsToTop.length && playerCard != null && playerCard.getValue()
                             == super.getPack().getCardAt(j).getValue()) {
                         temp[counter] = super.getPack().getCardAt(j);
