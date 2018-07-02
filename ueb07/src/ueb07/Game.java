@@ -55,29 +55,29 @@ public class Game {
      * Creates the given number of players, limits the number of player to
      * either MIN_COUNT or MAX_COUNT. Randomly creates risky/cautious players.
      * The name of players are "R" or "C" for risky/cautious player followed by
-     * the index of position of the player in the array.      *
+     * the index of position of the player in the array. *
      *
      * @param countOfPlayers number of players
      */
     public Game(int countOfPlayers) {
-        if(countOfPlayers < MIN_COUNT ){
+        if (countOfPlayers < MIN_COUNT) {
             countOfPlayers = MIN_COUNT;
         }
-        if(countOfPlayers >MAX_COUNT){
+        if (countOfPlayers > MAX_COUNT) {
             countOfPlayers = MAX_COUNT;
         }
         players = new Player[countOfPlayers];
         Random r = new Random();
         int playerType;
-        for(int i = 0; i < players.length; i++){
+        for (int i = 0; i < players.length; i++) {
             playerType = r.nextInt(2);
-            if(playerType == 0){
-                players[i] = new CautiousGuy("C"+ i);
-            }else{
-                players[i] = new RiskyGuy("R"+i);
+            if (playerType == 0) {
+                players[i] = new CautiousGuy("C" + i);
+            } else {
+                players[i] = new RiskyGuy("R" + i);
             }
         }
-        
+
     }
 
     /**
@@ -95,14 +95,14 @@ public class Game {
      */
     Game(Card[][] packs, String riskType) {
         players = new Player[packs.length];
-        for(int i = 0; i < players.length; i++){
-            if(riskType.charAt(i) == 'r'){
-                players[i] = new RiskyGuy("R"+i, packs[i]);
-            }else{
-                players[i] = new CautiousGuy("C"+i, packs[i]);
+        for (int i = 0; i < players.length; i++) {
+            if (riskType.charAt(i) == 'r') {
+                players[i] = new RiskyGuy("R" + i, packs[i]);
+            } else {
+                players[i] = new CautiousGuy("C" + i, packs[i]);
             }
         }
-            
+
     }
 //</editor-fold>
 
@@ -113,10 +113,14 @@ public class Game {
      * @return Array with players
      */
     Player[] dealCards() {
-        //TODO insert code
-        Card [] card = new Card[32];
-        for(int i =0; i< card.length; i++){
-            
+        Card[] card = new Card[32];
+        Player dealer = new Dealer("Dealer", card);
+        int numOfPlayer = players.length;
+        for (int i = 0; i < numOfPlayer; i++) {
+            for (int j = 0; j < (int) (32 / numOfPlayer); j++) {
+                players[i].receive(dealer.choose(cardsOnTop));
+            }
+
         }
         return players;
     }
@@ -128,7 +132,7 @@ public class Game {
      * @return true, if the player has no more cards
      */
     boolean hasWon(Player player) {
-        assert (player != null): "Wrong player is passed";
+        assert (player != null) : "Wrong player is passed";
         return player.getPack() == null;
     }
 
@@ -174,7 +178,7 @@ public class Game {
      * -      play according to rules and go to next player</code>
      */
     public void playGame() {
-        
+
         //TODO insert code
     }
 
