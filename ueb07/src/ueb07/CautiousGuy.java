@@ -1,10 +1,10 @@
-
 package ueb07;
 
 import ueb07.cards.Card;
 
 /**
- *This class always chooses the minimum number of cards required
+ * This class always chooses the minimum number of cards required
+ *
  * @author ite102770
  */
 public class CautiousGuy extends Player {
@@ -43,33 +43,39 @@ public class CautiousGuy extends Player {
         Card[] card = null;
         int counter = 0;
         int cardValue;
-        int noCards;
         int hasEnough;
         Card playerCard;
 
         if (cardsToTop != null && super.getPackSize() > 0) {
             Card[] temp = new Card[cardsToTop.length];
-            for (int i = 0; i < cardsToTop.length; i = i + noCards) {//index next card
-                cardValue = cardsToTop[i].getValue();
-                noCards = numberOfSameCards(cardsToTop, cardsToTop[i]);
-                playerCard = super.getPack().getCardWithValueHigherThan(cardValue);
-                hasEnough = hasEnoughCard(playerCard);
-                if (hasEnough >= noCards) {
-                    for (int j = 0; j < super.getPackSize() && counter < noCards; j++) {
-                        if (playerCard != null && playerCard.getValue()
-                                == super.getPack().getCardAt(j).getValue()) {
-                            temp[counter] = super.getPack().getCardAt(j);
-                            counter++;
-                        }
-                    }
-                }
-                card = new Card[counter];
-                for (int k = 0; k < counter; k++) {
-                    card[k] = temp[k];
-                    super.getPack().remove(card[k]);
-                }
 
+            cardValue = cardsToTop[0].getValue();
+            int j = 0;
+            card = new Card[cardsToTop.length];
+            while (j < super.getPackSize() && counter < cardsToTop.length) {
+                playerCard = super.getPack().getCardAt(j);
+                if (super.getPack().getCardAt(j).hasHigherValue(cardValue)) {
+                    hasEnough = hasEnoughCard(playerCard, cardValue);
+
+                    if (hasEnough >= cardsToTop.length && playerCard != null && playerCard.getValue()
+                            == super.getPack().getCardAt(j).getValue()) {
+                        temp[counter] = super.getPack().getCardAt(j);
+                        counter++;
+                        j++;
+                    }
+                    else{
+                        j = j + hasEnough;
+                    }
+                } else {
+                    j++;
+                }
             }
+            card = new Card[counter];
+            for (int k = 0; k < counter; k++) {
+                card[k] = temp[k];
+                super.getPack().remove(card[k]);
+            }
+            //}
             return card;
         } else if (super.getPackSize() > 0) {
             card = new Card[1];
@@ -82,35 +88,20 @@ public class CautiousGuy extends Player {
     }
 
     /**
-     * returns the number of cards thats the same of the given card
-     *
-     * @param cardOnTop cards on the top
-     * @param card is the given card
-     * @return number of the same value in the carsonTop
-     */
-    private int numberOfSameCards(Card[] cardOnTop, Card card) {
-        int noCards = 1;
-        for (int i = 1; i < cardOnTop.length; i++) {
-            if (cardOnTop[i].hasSameValue(card)) {
-                noCards++;
-            }
-        }
-        return noCards;
-    }
-
-    /**
      * returns the number of same value with the given card in the pack
      *
      * @param card is the given card
      * @return number of same value in pack
      */
-    private int hasEnoughCard(Card card) {
+    private int hasEnoughCard(Card card, int value) {
         int hasCard = 0;
+
         for (int i = 0; card != null && i < super.getPack().size(); i++) {
             if (super.getPack().getCardAt(i).hasSameValue(card)) {
                 hasCard++;
             }
         }
+
         return hasCard;
     }
 }

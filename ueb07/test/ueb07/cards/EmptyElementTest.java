@@ -20,7 +20,7 @@ public class EmptyElementTest {
         List ls = new EmptyElement();
         assertEquals(0, ls.size());
         ls = ls.add(Card.ACE_HEARTS);
-        //assertEquals(ls, this); 
+       assertEquals(1, ls.size()); 
     }
      @Test
       public void testRemoveElement() {

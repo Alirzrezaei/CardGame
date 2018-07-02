@@ -25,7 +25,8 @@ public class ListElement implements List {
      * @param value
      */
     ListElement(Card value) {
-        this.value = value;
+        this.value = value;   
+        this.next = null;
     }
 
     /**
@@ -99,11 +100,12 @@ public class ListElement implements List {
      */
     @Override
     public int size() {
-        //assert (value != null) : "There is not element in our list";  
-        //if(this != null){
-        return this.next.size() + 1;
-        //}else
-        // return 0;
+        assert (value != null) : "There is not element in our list";  
+      if (this.next == null) {
+            return 1;
+        } else {
+            return 1 + this.next.size();
+        }
     }
 
     /**
@@ -138,8 +140,8 @@ public class ListElement implements List {
         assert (card != null); // need?
         assert (this != null);
         if (card.ordinal() <= this.value.ordinal()) {
-            ListElement newElement = new ListElement(card, this);
-            // newElement.setNext(this);
+            ListElement newElement = new ListElement(card);
+            newElement.setNext(this);
             return newElement;
         } else if (this.next == null) {//card is greater than this
             ListElement newElement = new ListElement();
@@ -247,8 +249,12 @@ public class ListElement implements List {
      */
     @Override
     public String toString() {//print with coma at the end 
-
-        return this.getCard() + "," + this.next.toString();
+        if(this.next == null){
+            return ""+ this.getCard();
+        }
+        else
+        return this.getCard() + ", " + this.next.toString();
+    
 
     }
 

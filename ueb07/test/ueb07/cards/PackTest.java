@@ -169,7 +169,6 @@ public class PackTest {
         Pack pack = new Pack(new Card[]{NINE_DIAMONDS, QUEEN_HEARTS, QUEEN_SPADES, KING_DIAMONDS, KING_HEARTS});
         assertEquals(5, pack.size());
         pack.remove(new Card[]{QUEEN_HEARTS, KING_HEARTS, NINE_CLUBS});
-        System.out.println(pack);
         assertEquals(3, pack.size());
     }
 
@@ -204,8 +203,8 @@ public class PackTest {
     public void testToString() {
         Pack cards = new Pack(new Card[]{NINE_DIAMONDS, QUEEN_HEARTS, QUEEN_SPADES});
         //String pack =  "NINE_DIAMONDS, QUEEN_HEARTS, QUEEN_SPADES, ";
-        System.out.println(cards.toString());
-        assertEquals("NINE_DIAMONDS,QUEEN_HEARTS,QUEEN_SPADES,", cards.toString());
+        //System.out.println(cards.toString());
+        assertEquals("NINE_DIAMONDS, QUEEN_HEARTS, QUEEN_SPADES", cards.toString());
         
     }
 
@@ -213,7 +212,7 @@ public class PackTest {
     public void testToString_Sorting() {
         Card[] cards = new Card[]{QUEEN_HEARTS, NINE_DIAMONDS, QUEEN_SPADES};
         Pack pack = new Pack(cards);
-        assertArrayEquals(new Card[]{NINE_DIAMONDS, QUEEN_HEARTS, QUEEN_SPADES}, pack.toArray());
+        assertArrayEquals(new Card[]{NINE_DIAMONDS,QUEEN_HEARTS,QUEEN_SPADES}, pack.toArray());
     }
 
     @Test
@@ -228,6 +227,6 @@ public class PackTest {
         pack.add(ACE_HEARTS);
         assertEquals(1, pack.size());
         pack.remove(ACE_HEARTS);
-        //assertEquals(0, pack.size());
+        assertEquals(0, pack.size());
     }
 }
