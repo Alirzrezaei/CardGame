@@ -125,6 +125,18 @@ public class RiskyGuyTest {
         assertArrayEquals(new Card[]{}, chosen);
         assertArrayEquals(new Card[]{Card.NINE_HEARTS, Card.KING_HEARTS}, player.getPack().toArray());
    }
+    ////// Own test case
+     @Test
+    public void testChoose_HasNoHigherValue_SameValuePack4() {
+        Card[] cards = new Card[]{Card.NINE_CLUBS,  Card.JACK_HEARTS, Card.JACK_SPADES};
+
+        Player player = new CautiousGuy("Fred", cards);
+        Card[] chosen = player.choose(new Card[]{Card.EIGHT_CLUBS, Card.EIGHT_DIAMONDS});
+
+        assertArrayEquals(new Card[]{}, chosen);
+        assertArrayEquals(new Card[]{Card.NINE_CLUBS,  Card.JACK_HEARTS, Card.JACK_SPADES}, player.getPack().toArray());
+    }
+    
     
     
 }

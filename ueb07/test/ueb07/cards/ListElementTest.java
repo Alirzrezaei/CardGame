@@ -23,8 +23,7 @@ public class ListElementTest {
     }
     @Test
     public void testAddValue() {
-        List ls = new ListElement();
-        ls.add(Card.JACK_HEARTS);
+        List ls = new ListElement(Card.JACK_HEARTS , (List) this);
         assertEquals(1, ls.size());
         ls = ls.add(Card.ACE_HEARTS);
         ls = ls.add(Card.EIGHT_DIAMONDS);
@@ -35,7 +34,7 @@ public class ListElementTest {
     }
     @Test
     public void testRemoveValue() {
-        List ls = new ListElement();
+        List ls = new EmptyElement();
         ls.add(Card.JACK_HEARTS);
         assertEquals(1, ls.size());
         ls = ls.add(Card.ACE_HEARTS);

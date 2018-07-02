@@ -140,7 +140,7 @@ public class PackTest {
         assertFalse(pack.contains(NINE_DIAMONDS));
     }
 
-    @Test
+    @Test(expected = AssertionError.class)
     public void testRemoveCard_NullCard() {
         Pack pack = new Pack(null);
         assertEquals(0, pack.size());
@@ -189,7 +189,7 @@ public class PackTest {
         assertEquals(0, pack.size());
     }
 
-    @Test
+    @Test(expected = AssertionError.class)
     public void testContains_NullCard() {
         Pack pack = new Pack(null);
         assertEquals(0, pack.size());
