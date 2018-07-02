@@ -141,7 +141,7 @@ public class CautiousGuyTest {
         Card[] cards = new Card[]{Card.EIGHT_CLUBS, Card.EIGHT_DIAMONDS, Card.EIGHT_SPADES};
 
         Player player = new CautiousGuy("Fred", cards);
-        Card[] chosen = player.choose(new Card[]{Card.SEVEN_CLUBS, Card.SEVEN_DIAMONDS, Card.ACE_CLUBS, Card.ACE_DIAMONDS});
+        Card[] chosen = player.choose(new Card[]{Card.SEVEN_CLUBS, Card.SEVEN_DIAMONDS});
 
         assertArrayEquals(new Card[]{Card.EIGHT_CLUBS, Card.EIGHT_DIAMONDS}, chosen);
         assertArrayEquals(new Card[]{Card.EIGHT_SPADES}, player.getPack().toArray());
@@ -176,8 +176,8 @@ public class CautiousGuyTest {
         Player player = new CautiousGuy("Fred", cards);
         Card[] chosen = player.choose(new Card[]{Card.EIGHT_CLUBS, Card.EIGHT_DIAMONDS});
 
-        assertArrayEquals(new Card[]{}, chosen);
-        assertArrayEquals(new Card[]{Card.NINE_CLUBS, Card.JACK_HEARTS, Card.JACK_SPADES}, player.getPack().toArray());
+        assertArrayEquals(new Card[]{Card.JACK_HEARTS, Card.JACK_SPADES}, chosen);
+        assertArrayEquals(new Card[]{Card.NINE_CLUBS}, player.getPack().toArray());
     }
 
   

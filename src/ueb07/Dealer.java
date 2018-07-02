@@ -53,5 +53,4 @@ public class Dealer extends Player {
         total--;
         return card;
     }
-
 }

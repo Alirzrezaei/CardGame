@@ -94,15 +94,15 @@ public class Game {
      * alternatively create risky and cautious players.
      */
     Game(Card[][] packs, String riskType) {
+        assert(packs != null): "We don't have any packs";
         players = new Player[packs.length];
         for (int i = 0; i < players.length; i++) {
-            if (riskType.charAt(i) == 'r') {
+            if (riskType!= null && riskType.charAt(i) == 'r') {
                 players[i] = new RiskyGuy("R" + i, packs[i]);
             } else {
                 players[i] = new CautiousGuy("C" + i, packs[i]);
             }
         }
-
     }
 //</editor-fold>
 
@@ -132,7 +132,7 @@ public class Game {
      */
     boolean hasWon(Player player) {
         assert (player != null) : "Wrong player is passed";
-        return player.getPack() == null;
+        return player.getPackSize() == 0;
     }
 
     /**
@@ -146,6 +146,10 @@ public class Game {
      */
     Player doTurn(Player player, Card[] cardsToTop) {
         assert player.getPackSize() > 0;
+ 
+            if (player.choose(cardsToTop) != null) {
+               cardsToTop = player.choose(cardsToTop);
+            }
         
         return player;
     }

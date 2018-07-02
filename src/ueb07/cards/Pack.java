@@ -44,6 +44,7 @@ public class Pack {
         } else {
             return 0;
         }
+       //return this.list.size();
     }
 
     /**
