@@ -36,9 +36,12 @@ public class RiskyGuy extends Player {
                 }
                 return card;
             } else {
-                for (int i = 0; i < cardsToTop.length; i++) {
+                 int noCards = 1;
+                for(int i = 0; i < cardsToTop.length; i =i+noCards){
+                    noCards = numberOfSameCards(cardsToTop);
                     cardValue = cardsToTop[i].getValue();
                     playerCard = super.getPack().getCardWithValueHigherThan(cardValue);
+                    
                     for (int j = 0; j < super.getPackSize(); j++) {
                         if (playerCard != null && playerCard.getValue() == super.getPack().getCardAt(j).getValue()) {
                             temp[counter] = super.getPack().getCardAt(j);
@@ -62,5 +65,20 @@ public class RiskyGuy extends Player {
         return null;
 
     }
-
+    private int numberOfSameCards(Card[] cardOnTop){
+        int noCards = 1; 
+        for(int i = 0; i < cardOnTop.length && cardOnTop[i].hasSameValue(cardOnTop[i+1]); i++){
+            noCards = noCards + 1;
+        }
+        return noCards;
+    }
+    private int hasEnoughCard(Card card, int noCardOnTop){
+        int hasCard = 0;
+        for(int i = 0; card != null && i < super.getPack().size(); i++){
+            if(super.getPack().getCardAt(i).hasSameValue(card)){
+                hasCard++;
+            }
+        }
+        return hasCard;
+    }
 }
