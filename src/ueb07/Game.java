@@ -45,7 +45,7 @@ public class Game {
         return currentPlayer;
     }
 
-    public int getCountCantLay() {
+    public int getCountCantLay() {//??
         return countCantLay;
     }
 //</editor-fold>
@@ -53,28 +53,33 @@ public class Game {
 
     /**
      * Creates the given number of players, limits the number of player to
-     * either MIN_COUNT or MAX_COUNT. Randomnly creates risky/cautious players.
+     * either MIN_COUNT or MAX_COUNT. Randomly creates risky/cautious players.
      * The name of players are "R" or "C" for risky/cautious player followed by
      * the index of position of the player in the array.      *
      *
      * @param countOfPlayers number of players
      */
     public Game(int countOfPlayers) {
-        //TODO insert code
+        if(countOfPlayers < MIN_COUNT ){
+            countOfPlayers = MIN_COUNT;
+        }
+        if(countOfPlayers >MAX_COUNT){
+            countOfPlayers = MAX_COUNT;
+        }
     }
 
     /**
      * Creates the game assigns the appropriate cards to the players. It can be
      * assumed that only valid card decks are distributed. Different number of
-     * cards and multiple cards are pssible. The name of the players start are
+     * cards and multiple cards are possible. The name of the players start are
      * "R" or "C" depending on what type of player the player is followed by the
      * index of the player in the array.
      *
      * @param packs contains for each player an array with cards
      * @param riskType marks how likely the players are to take risks. An "r" in
      * the string creates a "risky" player, any other letter (or no letter at
-     * all) would create a cautious player. The strig "rcrcrc" would
-     * alternatingly create risky and cautious players.
+     * all) would create a cautious player. The string "rcrcrc" would
+     * alternatively create risky and cautious players.
      */
     Game(Card[][] packs, String riskType) {
         //TODO insert code
@@ -89,6 +94,10 @@ public class Game {
      */
     Player[] dealCards() {
         //TODO insert code
+        Card [] card = new Card[32];
+        for(int i =0; i< card.length; i++){
+            
+        }
         return players;
     }
 

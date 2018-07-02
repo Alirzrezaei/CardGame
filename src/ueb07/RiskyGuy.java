@@ -24,7 +24,7 @@ public class RiskyGuy extends Player {
         int noCards;
         int hasEnough;
         Card playerCard;
-        
+
         if (cardsToTop != null && super.getPack().size() > 0) {
             Card[] temp = new Card[super.getPack().size()];
             for (int i = 0; i < cardsToTop.length; i = i + noCards) {//index next card
@@ -36,27 +36,30 @@ public class RiskyGuy extends Player {
                     for (int j = 0; j < super.getPackSize() && counter < hasEnough; j++) {
                         if (playerCard != null && playerCard.getValue()
                                 == super.getPack().getCardAt(j).getValue()) {
-                            temp[counter] = super.getPack().getCardAt(j);      
+                            temp[counter] = super.getPack().getCardAt(j);
                             counter++;
                         }
                     }
-                } 
-                    card = new Card[counter];
-                    for (int k = 0; k < counter; k++) {
-                        card[k] = temp[k];
-                        super.getPack().remove(card[k]);
-                    }
-                
+                }
+                card = new Card[counter];
+                for (int k = 0; k < counter; k++) {
+                    card[k] = temp[k];
+                    super.getPack().remove(card[k]);
+                }
             }
             return card;
         } else if (super.getPack().size() > 0) {
-            card = new Card[1];
-            card[0] = super.getPack().getCardAt(0);
-            super.getPack().removeAt(0);
+            playerCard = super.getPack().getCardAt(0);
+            hasEnough = hasEnoughCard(playerCard);
+            card = new Card[hasEnough];
+            for (int i = 0; i < hasEnough; i++) {    
+                card[i] = super.getPack().getCardAt(0);
+                super.getPack().removeAt(0);
+            }
+            
             return card;
         }
         return null;
-
     }
 
     private int numberOfSameCards(Card[] cardOnTop, Card card) {
