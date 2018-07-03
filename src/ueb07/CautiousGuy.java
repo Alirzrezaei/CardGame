@@ -3,7 +3,7 @@ package ueb07;
 import ueb07.cards.Card;
 
 /**
- * This class always chooses the minimum number of cards required
+ * This class always chooses the minimum number of cards required for the Cautious Guy
  *
  * @author ite102770
  */
@@ -97,7 +97,10 @@ public class CautiousGuy extends Player {
         }
         return hasCard;
     }
-
+    /**
+     * prints the details of the Cautious Guy
+     * @return String format of output
+     */
     @Override
     public String toString() {
         return "" + this.getName() + ": " + this.getPack().toString();

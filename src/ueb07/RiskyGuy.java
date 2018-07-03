@@ -95,7 +95,10 @@ public class RiskyGuy extends Player {
 
         return hasCard;
     }
-
+    /**
+     * print the details of Risky guy
+     * @return String format of output
+     */
     @Override
     public String toString() {
         return "" + this.getName() + ": " + this.getPack().toString();
