@@ -39,11 +39,11 @@ public class Pack {
      * @return number of cards
      */
     public int size() {
-        if (this.list != null) {
+        //if (this.list != null) {
             return this.list.size();
-        } else {
-            return 0;
-        }
+        //} else {
+         //   return 0;
+       // }
        //return this.list.size();
     }
 
