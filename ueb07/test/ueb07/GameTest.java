@@ -1,5 +1,6 @@
 package ueb07;
 
+import java.util.Arrays;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import ueb07.Game.*;
@@ -20,7 +21,7 @@ public class GameTest {
         {Card.NINE_DIAMONDS, Card.QUEEN_CLUBS, Card.KING_DIAMONDS},
         {Card.TEN_DIAMONDS, Card.TEN_CLUBS, Card.ACE_CLUBS}};
         Game gameTest = new Game(packs, "rcr");
-        gameTest.doTurn(gameTest.getPlayers()[0], gameTest.getCardsToTop());
+        gameTest.nextPlayer( 0, gameTest.getCardsToTop() ,gameTest.getCountCantLay());
         assertArrayEquals(new Card[]{Card.EIGHT_SPADES}, gameTest.getCardsToTop());
         assertArrayEquals(new Card[]{Card.KING_HEARTS, Card.ACE_DIAMONDS}, gameTest.getPlayers()[0].getPack().toArray());
     }
@@ -32,9 +33,10 @@ public class GameTest {
         {Card.TEN_CLUBS, Card.TEN_DIAMONDS, Card.ACE_CLUBS}};
         Game gameTest = new Game(packs, "rcr");
         gameTest.nextPlayer(0, gameTest.getCardsToTop(), gameTest.getCountCantLay());
-
         gameTest.nextPlayer(1, gameTest.getCardsToTop(), gameTest.getCountCantLay());
+         System.out.print(Arrays.toString(gameTest.getCardsToTop()));
         assertArrayEquals(new Card[]{Card.EIGHT_SPADES}, gameTest.getCardsToTop());
+       
         assertEquals(1, gameTest.getCountCantLay());
         assertArrayEquals(new Card[]{Card.SEVEN_CLUBS, Card.SEVEN_DIAMONDS, Card.SEVEN_HEARTS}, gameTest.getPlayers()[1].getPack().toArray());
     }
@@ -56,6 +58,7 @@ public class GameTest {
             Card.KING_DIAMONDS}, {Card.TEN_DIAMONDS, Card.TEN_CLUBS, Card.ACE_CLUBS}};
         Game gameTest = new Game(packs, "rcr");
         gameTest.doTurn(gameTest.getPlayers()[0], gameTest.getCardsToTop());
+        System.out.println(gameTest.getPlayers()[0].getPack().toString());
         int nextPlayer = gameTest.nextPlayer(0, gameTest.getCardsToTop(), gameTest.getCountCantLay());
         assertEquals(1, nextPlayer);
         assertEquals(0, gameTest.getCountCantLay());

@@ -105,7 +105,7 @@ public abstract class Player {
      */
     @Override
     public String toString() {
-        return name + ": " + pack.toString();
+        return "" + this.getName() + ": " + this.getPack().toString();
     }
 
 }
