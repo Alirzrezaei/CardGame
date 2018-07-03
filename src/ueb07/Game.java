@@ -178,17 +178,7 @@ public class Game {
         if (TempToTop != null && TempToTop.length > 0) {
             cardsOnTop = TempToTop;
 
-            /*if (cardsToTop != null) {
-                Temp = cardsToTop.clone();
-            }
-            if (player.choose(Temp) != null && player.choose(Temp).length > 0) {
-                cardsOnTop = players[currentPlayer].choose(cardsToTop);
-             */
-            //System.out.print("OnTop: [");
-            //for (int i = 0; i < cardsOnTop.length; i++) {
-               // System.out.printf(cardsOnTop[i].toString() + ", ");
-            //}
-            //System.out.printf("] \t\t\t{%s} \n", player.toString());
+            countCantLay = 0;
         } else {
             countCantLay++;
         }
@@ -210,17 +200,16 @@ public class Game {
      */
     int nextPlayer(int currentPlayer, Card[] cardsToTop, int couldntLay) {
         if (cardsToTop != null && cardsToTop[0].isAce()) {
-                doTurn(players[currentPlayer], null);
-                countCantLay = 0;
-            }
-
+            doTurn(players[currentPlayer], null);
+            countCantLay = 0;
+        }
         Card[] TempToTop = null;
         if (cardsToTop != null) {
             TempToTop = cardsToTop.clone();
         }
-        while (Arrays.equals(TempToTop, cardsToTop)) {
-        
-            if (couldntLay == players.length - 1) {
+       // while (Arrays.equals(TempToTop, cardsToTop)) {
+
+            if (countCantLay == players.length) {
                 doTurn(players[currentPlayer], null);
                 countCantLay = 0;
             }
@@ -228,11 +217,10 @@ public class Game {
             if (currentPlayer == players.length) {
                 currentPlayer = 0;
             }
-            TempToTop = players[currentPlayer].choose(cardsToTop);  
-            couldntLay++;
+            TempToTop = players[currentPlayer].choose(cardsToTop);
             
-        }
-
+            
+        //}
         return currentPlayer;
     }
 
@@ -246,16 +234,16 @@ public class Game {
      */
     public void playGame() {
         currentPlayer = 0;
-        
+
         dealCards();
         //doTurn(players[currentPlayer], cardsOnTop);
         while (!hasWon(players[currentPlayer])) {
             doTurn(players[currentPlayer], cardsOnTop);
-            System.out.println(Arrays.toString(cardsOnTop) +"\t\t"+players[currentPlayer].toString());
+            System.out.println(Arrays.toString(cardsOnTop) + "\t\t" + players[currentPlayer].toString());
             currentPlayer = nextPlayer(currentPlayer, cardsOnTop, countCantLay);
-                  
-        }
 
+        }
+        System.out.print(players[currentPlayer].getName() + "WON!");
     }
 
     @Override
