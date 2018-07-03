@@ -6,7 +6,7 @@ import java.util.*;
 /**
  * This class he only available constructor assigns a complete card deck to a
  * player. In the method choose() the incoming parameter is ignored and an array
- * with one randomnly selected card from the pack is returned
+ * with one randomly selected card from the pack is returned
  *
  * @author ite102770
  */
