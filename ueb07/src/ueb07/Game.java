@@ -129,6 +129,11 @@ public class Game {
      */
     Player[] dealCards() {
         Card[] card = new Card[32];
+        int k = 0;
+        for (Card iCard : Card.values()) {
+            card[k++] = iCard;
+        }
+
         Player dealer = new Dealer("Dealer", card);
         int numOfPlayer = players.length;
         for (int i = 0; i < numOfPlayer; i++) {
