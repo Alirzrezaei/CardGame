@@ -122,5 +122,12 @@ public class GameTest {
         assertEquals(0, nextPlayer3);
         assertArrayEquals(new Card[]{Card.QUEEN_CLUBS}, gameTest.getCardsToTop());
     }
-
+    @Test
+    public void tesToString() {
+        Card[][] packs = new Card[][]{{Card.ACE_CLUBS, Card.ACE_DIAMONDS, Card.ACE_SPADES},
+        {Card.SEVEN_CLUBS, Card.SEVEN_DIAMONDS, Card.SEVEN_HEARTS}, 
+        {Card.TEN_CLUBS, Card.TEN_DIAMONDS, Card.QUEEN_CLUBS}};
+        Game gameTest = new Game(packs, "ccr");
+       assertEquals("C0: ACE_CLUBS, ACE_DIAMONDS, ACE_SPADES", gameTest.getPlayers()[0].toString());
+    }
 }

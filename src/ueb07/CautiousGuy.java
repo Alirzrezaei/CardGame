@@ -104,6 +104,6 @@ public class CautiousGuy extends Player {
     }
     @Override
     public String toString(){
-        return "" + this.getName() + ""+ this.getPack().toString();
+        return "" + this.getName() + ": "+ this.getPack().toString();
     }
 }
