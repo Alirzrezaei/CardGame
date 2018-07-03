@@ -74,7 +74,6 @@ public class CautiousGuy extends Player {
                 card[k] = temp[k];
                 super.getPack().remove(card[k]);
             }
-            //}
             return card;
         } else if (super.getPackSize() > 0) {
             card = new Card[1];
@@ -102,5 +101,9 @@ public class CautiousGuy extends Player {
         }
 
         return hasCard;
+    }
+    @Override
+    public String toString(){
+        return "" + this.getName() + ""+ this.getPack().toString();
     }
 }

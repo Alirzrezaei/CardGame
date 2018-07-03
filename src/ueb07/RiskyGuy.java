@@ -35,31 +35,36 @@ public class RiskyGuy extends Player {
         Card[] card = null;
         int counter = 0;
         int cardValue;
-        int noCards;
-        int hasEnough;
+        int hasEnough = 32;
         Card playerCard;
 
-        if (cardsToTop != null && super.getPack().size() > 0) {
-            Card[] temp = new Card[super.getPack().size()];
-            for (int i = 0; i < cardsToTop.length; i = i + noCards) {//index next card
-                cardValue = cardsToTop[i].getValue();
-                noCards = numberOfSameCards(cardsToTop, cardsToTop[i]);
-                playerCard = super.getPack().getCardWithValueHigherThan(cardValue);
-                hasEnough = hasEnoughCard(playerCard);
-                if (hasEnough >= noCards) {
-                    for (int j = 0; j < super.getPackSize() && counter < hasEnough; j++) {
-                        if (playerCard != null && playerCard.getValue()
-                                == super.getPack().getCardAt(j).getValue()) {
-                            temp[counter] = super.getPack().getCardAt(j);
-                            counter++;
-                        }
+        if (cardsToTop != null && super.getPackSize() > 0) {
+            Card[] temp = new Card[super.getPackSize()];
+
+            cardValue = cardsToTop[0].getValue();
+            int j = 0;
+            card = new Card[cardsToTop.length];
+            while (j < super.getPackSize() && counter < hasEnough) {
+                playerCard = super.getPack().getCardAt(j);
+                if (super.getPack().getCardAt(j).hasHigherValue(cardValue)) {
+                    hasEnough = hasEnoughCard(playerCard);
+                    if (hasEnough >= cardsToTop.length && playerCard != null && playerCard.getValue()
+                            == super.getPack().getCardAt(j).getValue()) {
+                        temp[counter] = super.getPack().getCardAt(j);
+                        counter++;
+                        j++;
                     }
+                    else{
+                        j = j + hasEnough;
+                    }
+                } else {
+                    j++;
                 }
-                card = new Card[counter];
-                for (int k = 0; k < counter; k++) {
-                    card[k] = temp[k];
-                    super.getPack().remove(card[k]);
-                }
+            }
+            card = new Card[counter];
+            for (int k = 0; k < counter; k++) {
+                card[k] = temp[k];
+                super.getPack().remove(card[k]);
             }
             return card;
         } else if (super.getPack().size() > 0) {
@@ -70,21 +75,11 @@ public class RiskyGuy extends Player {
                 card[i] = super.getPack().getCardAt(0);
                 super.getPack().removeAt(0);
             }
-
             return card;
         }
         return null;
     }
 
-    private int numberOfSameCards(Card[] cardOnTop, Card card) {
-        int noCards = 1;
-        for (int i = 1; i < cardOnTop.length; i++) {
-            if (cardOnTop[i].hasSameValue(card)) {
-                noCards++;
-            }
-        }
-        return noCards;
-    }
 
     /**
      * returns the number of same value with the given card in the pack
@@ -94,11 +89,17 @@ public class RiskyGuy extends Player {
      */
     private int hasEnoughCard(Card card) {
         int hasCard = 0;
+
         for (int i = 0; card != null && i < super.getPack().size(); i++) {
             if (super.getPack().getCardAt(i).hasSameValue(card)) {
                 hasCard++;
             }
         }
+
         return hasCard;
+    }
+    @Override
+    public String toString(){
+        return "" + this.getName() + ""+ this.getPack().toString();
     }
 }

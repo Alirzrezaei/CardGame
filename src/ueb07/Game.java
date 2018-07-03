@@ -3,6 +3,7 @@ package ueb07;
 import java.util.Arrays;
 import java.util.Random;
 import ueb07.cards.Card;
+import ueb07.cards.Pack;
 
 /**
  * The card game "Lump". For Lump you need three to six players. You use a skat
@@ -129,18 +130,21 @@ public class Game {
      */
     Player[] dealCards() {
         Card[] card = new Card[32];
-        int numberOfCards = (int) card.length/players.length;
+        int numberOfCards = (int) card.length / players.length;
         int k = 0;
+        System.out.println(numberOfCards);
         for (Card iCard : Card.values()) {
             card[k++] = iCard;
         }
-
         Player dealer = new Dealer("Dealer", card);
         for (int i = 0; i < players.length; i++) {
             for (int j = 0; j < numberOfCards; j++) {
                 players[i].receive(dealer.choose(cardsOnTop));
             }
         }
+
+        players[0].toString();
+
         return players;
     }
 
@@ -165,11 +169,17 @@ public class Game {
      * @pre the player still has cards
      */
     Player doTurn(Player player, Card[] cardsToTop) {
-        assert player.getPackSize() > 0;
-
-        //if (player.choose(cardsToTop).length > 0) {
-        cardsOnTop = player.choose(cardsToTop);
-        //}
+        assert player != null;
+         Card[] temp = null;
+        if(cardsToTop != null){
+            temp = cardsToTop.clone();
+        }
+       
+        if (player.choose(temp).length > 0) {
+            cardsOnTop = player.choose(cardsToTop);
+        } else {
+            countCantLay++;
+        }
 
         return player;
     }
@@ -189,9 +199,12 @@ public class Game {
      */
     int nextPlayer(int currentPlayer, Card[] cardsToTop, int couldntLay) {
 
-        if (players[currentPlayer].choose(cardsToTop).length > 0) {
+        Pack pack = players[currentPlayer].getPack();
+        Player p = players[currentPlayer];
+        p.receive(pack.toArray());
+        if (p.choose(cardsToTop).length > 0) {
             doTurn(players[currentPlayer], cardsToTop);
-            if (cardsOnTop[0].isAce()) {
+            if (cardsOnTop != null && cardsOnTop[0].isAce()) {
                 doTurn(players[currentPlayer], null);
             }
             countCantLay = 0;
@@ -215,24 +228,25 @@ public class Game {
      * -      play according to rules and go to next player</code>
      */
     public void playGame() {
-       currentPlayer = 0;
-        
+        currentPlayer = 0;
+
         dealCards();
-        while (!hasWon(players[currentPlayer])) {
+        /*while (!hasWon(players[currentPlayer])) {
+            players[currentPlayer].toString();
             nextPlayer(currentPlayer, cardsOnTop, countCantLay);
-            
+            currentPlayer++;
             
             if(currentPlayer == players.length){
                 currentPlayer = 0;
             }
-        }
+        }*/
 
     }
 
     @Override
     public String toString() {
-        String s = String.format("     : %26s \t", getCurrentPlayer());
-        return null;
+
+        return "";
     }
 
 }
