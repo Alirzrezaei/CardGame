@@ -206,5 +206,15 @@ public class CautiousGuyTest {
         Player player = new CautiousGuy("Fred", cards);
          assertEquals("Fred: EIGHT_SPADES, KING_HEARTS, ACE_DIAMONDS", player.toString());
     }
+    @Test
+    public void testChoose_OnOnTop() {
+        Card[] cards = new Card[]{Card.JACK_DIAMONDS, Card.QUEEN_CLUBS, Card.ACE_SPADES};
+
+        Player player = new CautiousGuy("Fred", cards);
+        Card[] chosen = player.choose(new Card[]{Card.KING_DIAMONDS});
+
+        assertArrayEquals(new Card[]{Card.ACE_SPADES}, chosen);
+        assertArrayEquals(new Card[]{Card.JACK_DIAMONDS, Card.QUEEN_CLUBS}, player.getPack().toArray());
+    }
   
 }
