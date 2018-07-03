@@ -55,8 +55,8 @@ public class ListElementTest {
     @Test
     public void testRemoveValue() {//ask? when we add new value to empty element it should automatically call listElement class and size increase
         List ls = new EmptyElement();
-        ls.add(Card.JACK_HEARTS);
-        //assertEquals(1, ls.size());
+        ls = ls.add(Card.JACK_HEARTS);
+        assertEquals(1, ls.size());
         ls = ls.add(Card.ACE_HEARTS);
         ls = ls.add(Card.EIGHT_DIAMONDS);
         assertEquals(3, ls.size());
@@ -70,11 +70,26 @@ public class ListElementTest {
         List ls = new EmptyElement();
         assertEquals(0, ls.size());
         ls = ls.add(Card.ACE_HEARTS);
-        //assertEquals(1, ls.size());
+        assertEquals(1, ls.size());
         assertFalse(ls.isEmpty());
         ls = ls.remove(Card.ACE_HEARTS);
         //assertTrue(ls.isEmpty());
-        //assertEquals(0, ls.size());
+        assertEquals(0, ls.size());
+    }
+     @Test
+    public void testIsEmpty_AddElement() {
+        List ls = new EmptyElement();
+        //assertTrue(ls.isEmpty());
+        assertEquals(0, ls.size());
+        ls = ls.add(Card.ACE_HEARTS);
+        ls = ls.add(Card.ACE_HEARTS);
+        assertEquals(Card.ACE_HEARTS, ls.getCardAt(0));
+        ls = ls.add(Card.ACE_HEARTS);
+        assertEquals(3, ls.size());
+        assertFalse(ls.isEmpty());
+        ls = ls.remove(Card.ACE_HEARTS);
+        //assertTrue(ls.isEmpty());
+        assertEquals(2, ls.size());
     }
     
 }

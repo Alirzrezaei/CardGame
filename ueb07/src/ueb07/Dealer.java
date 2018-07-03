@@ -34,7 +34,7 @@ public class Dealer extends Player {
     }
 
     /**
-     * form random function select the card and gives to the player
+     * From random function select the card and gives to the player
      *
      * @param cardsToTop card(s) that has to be surpassed
      * @return all cards that the player wants to play, an empty array if he
@@ -42,6 +42,7 @@ public class Dealer extends Player {
      */
     @Override
     public Card[] choose(Card[] cardsToTop) {
+        
         Card[] card = new Card[1];
         Random r = new Random();
         int selectCard;

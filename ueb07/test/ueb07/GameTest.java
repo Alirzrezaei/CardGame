@@ -29,12 +29,13 @@ public class GameTest {
     public void testDoTurnFailed() {
         Card[][] packs = new Card[][] {{Card.EIGHT_SPADES, Card.KING_HEARTS, Card.ACE_DIAMONDS},
             {Card.SEVEN_CLUBS,Card.SEVEN_DIAMONDS,Card.SEVEN_HEARTS},
-            {Card.TEN_DIAMONDS,Card.TEN_CLUBS,Card.ACE_CLUBS}}; 
+            {Card.TEN_CLUBS,Card.TEN_DIAMONDS,Card.ACE_CLUBS}}; 
         Game gameTest =  new Game(packs, "rcr");
         gameTest.doTurn(gameTest.getPlayers()[0], gameTest.getCardsToTop());
+        assertArrayEquals(new Card[]{Card.EIGHT_SPADES}, gameTest.getCardsToTop());
         gameTest.doTurn(gameTest.getPlayers()[1], gameTest.getCardsToTop());
         assertEquals(1, gameTest.getCountCantLay());
-        assertArrayEquals(new Card[]{Card.EIGHT_SPADES}, gameTest.getCardsToTop());
+        
         assertArrayEquals(new Card[]{Card.SEVEN_CLUBS,Card.SEVEN_DIAMONDS,Card.SEVEN_HEARTS}, gameTest.getPlayers()[1].getPack().toArray());
     }
     

@@ -227,7 +227,7 @@ public class Game {
 
     @Override
     public String toString() {
-       
+        String s = String.format("     : %26s \t", getCurrentPlayer());
         return null;
     }
 

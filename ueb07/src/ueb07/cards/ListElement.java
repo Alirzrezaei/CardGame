@@ -89,7 +89,7 @@ public class ListElement implements List {
      */
     @Override
     public boolean isEmpty() {
-        assert (value != null);
+        assert (this != null);
         return false;
     }
 
@@ -100,8 +100,8 @@ public class ListElement implements List {
      */
     @Override
     public int size() {
-        assert (value != null) : "There is not element in our list";  
-      if (this.next == null) {
+        assert (this.value != null) : "There is not element in our list";  
+        if (this.next == null) {
             return 1;
         } else {
             return 1 + this.next.size();
