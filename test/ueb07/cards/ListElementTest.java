@@ -73,7 +73,7 @@ public class ListElementTest {
         assertEquals(1, ls.size());
         assertFalse(ls.isEmpty());
         ls = ls.remove(Card.ACE_HEARTS);
-        //assertTrue(ls.isEmpty());
+        assertTrue(ls.isEmpty());
         assertEquals(0, ls.size());
     }
      @Test

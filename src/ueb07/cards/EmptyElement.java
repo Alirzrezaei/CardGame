@@ -36,8 +36,8 @@ public class EmptyElement implements List {
      */
     @Override
     public boolean isEmpty() {
-        assert(this != null);
-        return this == null;
+       // assert(this != null);
+        return this == null || this.size() == 0;
     }
 
     /**
@@ -139,6 +139,6 @@ public class EmptyElement implements List {
      */
     @Override
     public String toString() {
-        return "";
+        return "End";
     }
 }

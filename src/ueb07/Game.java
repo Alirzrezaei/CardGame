@@ -174,7 +174,6 @@ public class Game {
         if(cardsToTop != null){
             temp = cardsToTop.clone();
         }
-       
         if (player.choose(temp).length > 0) {
             cardsOnTop = player.choose(cardsToTop);
         } else {
