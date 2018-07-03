@@ -199,6 +199,12 @@ public class CautiousGuyTest {
         assertArrayEquals(new Card[]{Card.EIGHT_SPADES}, chosen);
         assertArrayEquals(new Card[]{Card.KING_HEARTS, Card.ACE_DIAMONDS}, player.getPack().toArray());
     }
+@Test
+    public void testToString() {
+        Card[] cards = new Card[]{Card.EIGHT_SPADES, Card.KING_HEARTS, Card.ACE_DIAMONDS};
 
+        Player player = new CautiousGuy("Fred", cards);
+         assertEquals("Fred: EIGHT_SPADES, KING_HEARTS, ACE_DIAMONDS", player.toString());
+    }
   
 }

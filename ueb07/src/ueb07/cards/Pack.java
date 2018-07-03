@@ -1,6 +1,7 @@
 package ueb07.cards;
 
 import java.util.Arrays;
+import ueb07.cards.*;
 
 /**
  * The class Pack, which as an attribute has the reference to a list. After
