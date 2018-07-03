@@ -98,6 +98,7 @@ public class RiskyGuy extends Player {
 
         return hasCard;
     }
+    
     @Override
     public String toString(){
         return "" + this.getName() + ""+ this.getPack().toString();
