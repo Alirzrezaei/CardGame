@@ -132,7 +132,6 @@ public class Game {
         Card[] card = new Card[32];
         int numberOfCards = (int) card.length / players.length;
         int k = 0;
-        System.out.println(numberOfCards);
         for (Card iCard : Card.values()) {
             card[k++] = iCard;
         }
@@ -142,8 +141,10 @@ public class Game {
                 players[i].receive(dealer.choose(cardsOnTop));
             }
         }
-
-        players[0].toString();
+        for(int i = 0; i < players.length; i++){
+            
+            System.out.println(players[i].toString());
+        }
 
         return players;
     }
@@ -169,17 +170,24 @@ public class Game {
      * @pre the player still has cards
      */
     Player doTurn(Player player, Card[] cardsToTop) {
+        
         assert player != null;
-         Card[] temp = null;
+        assert player.getPackSize() > 0;
+        
+        Card[] temp = null;
         if(cardsToTop != null){
             temp = cardsToTop.clone();
         }
-        if (player.choose(temp).length > 0) {
-            cardsOnTop = player.choose(cardsToTop);
+        if (player.choose(temp) != null && player.choose(temp).length > 0) {
+            cardsOnTop = players[currentPlayer].choose(cardsToTop);
+            System.out.print("OnTop: [");
+            for(int i =0 ; i < cardsOnTop.length; i++){
+                 System.out.print(cardsOnTop[i].toString()); 
+            }
+            System.out.printf("] %95s} \n", player.toString());
         } else {
             countCantLay++;
         }
-
         return player;
     }
 
@@ -197,11 +205,15 @@ public class Game {
      * @return index of the player whose turn it is
      */
     int nextPlayer(int currentPlayer, Card[] cardsToTop, int couldntLay) {
-
+        
+        if(cardsToTop != null && cardsToTop[0].isAce()){
+            doTurn(players[currentPlayer], null);
+        }
+        
         Pack pack = players[currentPlayer].getPack();
         Player p = players[currentPlayer];
         p.receive(pack.toArray());
-        if (p.choose(cardsToTop).length > 0) {
+        if (p.choose(cardsToTop) !=null &&p.choose(cardsToTop).length > 0) {
             doTurn(players[currentPlayer], cardsToTop);
             if (cardsOnTop != null && cardsOnTop[0].isAce()) {
                 doTurn(players[currentPlayer], null);
@@ -214,7 +226,6 @@ public class Game {
                 countCantLay = 0;
             }
         }
-
         return currentPlayer;
     }
 
@@ -230,6 +241,7 @@ public class Game {
         currentPlayer = 0;
 
         dealCards();
+        doTurn(players[0], cardsOnTop);
         /*while (!hasWon(players[currentPlayer])) {
             players[currentPlayer].toString();
             nextPlayer(currentPlayer, cardsOnTop, countCantLay);
@@ -244,7 +256,7 @@ public class Game {
 
     @Override
     public String toString() {
-
+        
         return "";
     }
 
