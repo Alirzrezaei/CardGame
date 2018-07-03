@@ -129,15 +129,15 @@ public class Game {
      */
     Player[] dealCards() {
         Card[] card = new Card[32];
+        int numberOfCards = (int) card.length/players.length;
         int k = 0;
         for (Card iCard : Card.values()) {
             card[k++] = iCard;
         }
 
         Player dealer = new Dealer("Dealer", card);
-        int numOfPlayer = players.length;
-        for (int i = 0; i < numOfPlayer; i++) {
-            for (int j = 0; j < (int) (32 / numOfPlayer); j++) {
+        for (int i = 0; i < players.length; i++) {
+            for (int j = 0; j < numberOfCards; j++) {
                 players[i].receive(dealer.choose(cardsOnTop));
             }
         }
@@ -215,12 +215,16 @@ public class Game {
      * -      play according to rules and go to next player</code>
      */
     public void playGame() {
-        int countPlayer = 0;
-        while (!hasWon(players[countPlayer])) {
-            countPlayer = currentPlayer;
+       currentPlayer = 0;
+        
+        dealCards();
+        while (!hasWon(players[currentPlayer])) {
+            nextPlayer(currentPlayer, cardsOnTop, countCantLay);
             
-            dealCards();
-
+            
+            if(currentPlayer == players.length){
+                currentPlayer = 0;
+            }
         }
 
     }
