@@ -202,8 +202,6 @@ public class PackTest {
     @Test
     public void testToString() {
         Pack cards = new Pack(new Card[]{NINE_DIAMONDS, QUEEN_HEARTS, QUEEN_SPADES});
-        //String pack =  "NINE_DIAMONDS, QUEEN_HEARTS, QUEEN_SPADES, ";
-        //System.out.println(cards.toString());
         assertEquals("NINE_DIAMONDS, QUEEN_HEARTS, QUEEN_SPADES", cards.toString());
         
     }

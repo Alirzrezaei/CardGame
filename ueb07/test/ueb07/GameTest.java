@@ -109,7 +109,8 @@ public class GameTest {
     @Test
     public void testNextPlayerAcePlaced() {
         Card[][] packs = new Card[][]{{Card.JACK_DIAMONDS, Card.QUEEN_CLUBS, Card.ACE_SPADES},
-        {Card.SEVEN_CLUBS, Card.SEVEN_DIAMONDS, Card.SEVEN_HEARTS}, {Card.TEN_CLUBS, Card.TEN_DIAMONDS, Card.KING_DIAMONDS}};
+        {Card.SEVEN_CLUBS, Card.SEVEN_DIAMONDS, Card.SEVEN_HEARTS}, 
+        {Card.TEN_CLUBS, Card.TEN_DIAMONDS, Card.KING_DIAMONDS}};
         Game gameTest = new Game(packs, "crc");
         gameTest.doTurn(gameTest.getPlayers()[0], gameTest.getCardsToTop());
         int nextPlayer = gameTest.nextPlayer(0, gameTest.getCardsToTop(), gameTest.getCountCantLay());
