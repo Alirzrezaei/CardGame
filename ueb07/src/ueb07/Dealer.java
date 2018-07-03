@@ -42,7 +42,7 @@ public class Dealer extends Player {
      */
     @Override
     public Card[] choose(Card[] cardsToTop) {
-        
+
         Card[] card = new Card[1];
         Random r = new Random();
         int selectCard;
@@ -52,4 +52,15 @@ public class Dealer extends Player {
         total--;
         return card;
     }
+
+    /**
+     * return all contained cards in single line
+     *
+     * @return return list of cards
+     */
+    @Override
+    public String toString() {
+        return "" + this.getName() + ": " + this.getPack().toString();
+    }
+
 }
