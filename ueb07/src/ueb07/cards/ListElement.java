@@ -25,7 +25,7 @@ public class ListElement implements List {
      * @param value
      */
     ListElement(Card value) {
-        this.value = value;   
+        this.value = value;
         this.next = null;
     }
 
@@ -100,7 +100,7 @@ public class ListElement implements List {
      */
     @Override
     public int size() {
-        assert (this.value != null) : "There is not element in our list";  
+        assert (this.value != null) : "There is not element in our list";
         if (this.next == null) {
             return 1;
         } else {
@@ -204,10 +204,9 @@ public class ListElement implements List {
     @Override
     public List remove(Card value) {//????
         assert (value != null); // need?
-        if(this.value == value && this.next == null){
-            return  new EmptyElement();
-        }
-        else if (this.value == value) {
+        if (this.value == value && this.next == null) {
+            return new EmptyElement();
+        } else if (this.value == value) {
             return this.next;
         } else {
             this.next = this.next.remove(value);
@@ -252,11 +251,10 @@ public class ListElement implements List {
      */
     @Override
     public String toString() {//print with coma at the end 
-        if(this.next == null){
-            return ""+ this.getCard();
-        }
-        else{
-        return this.getCard() + ", " + this.next.toString();
+        if (this.next == null) {
+            return "" + this.getCard();
+        } else {
+            return this.getCard() + ", " + this.next.toString();
         }
 
     }

@@ -29,7 +29,6 @@ public class RiskyGuy extends Player {
         super(name, cards);
     }
 
-    
     @Override
     public Card[] choose(Card[] cardsToTop) {
         Card[] card = null;
@@ -53,8 +52,7 @@ public class RiskyGuy extends Player {
                         temp[counter] = super.getPack().getCardAt(j);
                         counter++;
                         j++;
-                    }
-                    else{
+                    } else {
                         j = j + hasEnough;
                     }
                 } else {
@@ -80,7 +78,6 @@ public class RiskyGuy extends Player {
         return null;
     }
 
-
     /**
      * returns the number of same value with the given card in the pack
      *
@@ -98,9 +95,9 @@ public class RiskyGuy extends Player {
 
         return hasCard;
     }
-    
+
     @Override
-    public String toString(){
-        return "" + this.getName() + ": "+ this.getPack().toString();
+    public String toString() {
+        return "" + this.getName() + ": " + this.getPack().toString();
     }
 }

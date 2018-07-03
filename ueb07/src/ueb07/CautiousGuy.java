@@ -45,24 +45,21 @@ public class CautiousGuy extends Player {
         int cardValue;
         int hasEnough;
         Card playerCard;
-
         if (cardsToTop != null && super.getPackSize() > 0) {
             Card[] temp = new Card[cardsToTop.length];
-
             cardValue = cardsToTop[0].getValue();
             int j = 0;
             card = new Card[cardsToTop.length];
             while (j < super.getPackSize() && counter < cardsToTop.length) {
                 playerCard = super.getPack().getCardAt(j);
                 if (super.getPack().getCardAt(j).hasHigherValue(cardValue)) {
-                    hasEnough = hasEnoughCard(playerCard, cardValue);
+                    hasEnough = hasEnoughCard(playerCard, cardValue);//number of same value in the pack
                     if (hasEnough >= cardsToTop.length && playerCard != null && playerCard.getValue()
                             == super.getPack().getCardAt(j).getValue()) {
                         temp[counter] = super.getPack().getCardAt(j);
                         counter++;
                         j++;
-                    }
-                    else{
+                    } else {
                         j = j + hasEnough;
                     }
                 } else {
@@ -93,17 +90,16 @@ public class CautiousGuy extends Player {
      */
     private int hasEnoughCard(Card card, int value) {
         int hasCard = 0;
-
         for (int i = 0; card != null && i < super.getPack().size(); i++) {
             if (super.getPack().getCardAt(i).hasSameValue(card)) {
                 hasCard++;
             }
         }
-
         return hasCard;
     }
+
     @Override
-    public String toString(){
-        return "" + this.getName() + ": "+ this.getPack().toString();
+    public String toString() {
+        return "" + this.getName() + ": " + this.getPack().toString();
     }
 }

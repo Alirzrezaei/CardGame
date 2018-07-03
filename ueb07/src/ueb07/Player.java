@@ -94,12 +94,12 @@ public abstract class Player {
      *
      * @param cardsToTop card(s) that has to be surpassed
      * @return all cards that the player wants to play, an empty array if he
-     * cannto play any card, null if he does not have any cards left      *
+     * cannto play any card, null if he does not have any cards left *
      */
     public abstract Card[] choose(Card[] cardsToTop);
 
     /**
-     * Name and cards of the player in a single line. 
+     * Name and cards of the player in a single line.
      *
      * @return Name and cards of the player in a single line
      */

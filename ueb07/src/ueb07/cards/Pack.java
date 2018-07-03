@@ -41,11 +41,11 @@ public class Pack {
      */
     public int size() {
         //if (this.list != null) {
-            return this.list.size();
+        return this.list.size();
         //} else {
-         //   return 0;
-       // }
-       //return this.list.size();
+        //   return 0;
+        // }
+        //return this.list.size();
     }
 
     /**
