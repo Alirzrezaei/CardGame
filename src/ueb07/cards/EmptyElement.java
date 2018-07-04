@@ -141,9 +141,9 @@ public class EmptyElement implements List {
      * @return all elements of the list, seperatedy by a comma, without a comma
      * at the end
      */
-    //TODO DONEString for empty list hsould be empty
+    //TODO String for empty list hsould be empty
     @Override
     public String toString() {
-        return "";
+        return "End";
     }
 }

@@ -225,7 +225,7 @@ public class Pack {
      */
     private void addElementArray(Card[] cards) {
         for (int i = 0; i < cards.length; i++) {
-            list = list.add(cards[i]);
+            add(cards[i]);
         }
 
     }
