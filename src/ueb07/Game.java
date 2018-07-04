@@ -88,9 +88,9 @@ public class Game {
         for (int i = 0; i < players.length; i++) {
             playerType = r.nextInt(2);
             if (playerType == 0) {
-                players[i] = new CautiousGuy("" + i); //TODO add prefix in the respective classes
+                players[i] = new CautiousGuy("" + i); //TODO DONE add prefix in the respective classes
             } else {
-                players[i] = new RiskyGuy("" + i); //TODO add prefix in the respective classes
+                players[i] = new RiskyGuy("" + i); //TODO DONE add prefix in the respective classes
             }
         }
 
@@ -198,27 +198,27 @@ public class Game {
      * @param couldntLay number of player that had to skip so far
      * @return index of the player whose turn it is
      */
-    //TODO cardsOnTop should be empty when a new round starts (e.g. an ace was the card to top or none of the players can put down another card)
+    //TODO DONE cardsOnTop should be empty when a new round starts (e.g. an ace was the card to top or none of the players can put down another card)
     int nextPlayer(int currentPlayer, Card[] cardsToTop, int couldntLay) {
         if (cardsToTop != null && cardsToTop[0].isAce()) {
-            doTurn(players[currentPlayer], null);
+            cardsOnTop = null; 
             countCantLay = 0;
+            return currentPlayer;      
         }
-        Card[] tempToTop = null; //TODO not needed, only ever written to, never read
-        if (cardsToTop != null) {
-            tempToTop = cardsToTop.clone();
-        }
+        
+       //TODO DONE not needed, only ever written to, never read
+        
        // while (Arrays.equals(TempToTop, cardsToTop)) {
 
             if (countCantLay == players.length) {
-                doTurn(players[currentPlayer], null);
+                cardsOnTop = null;
                 countCantLay = 0;
+                return currentPlayer;
             }
             currentPlayer++;
             if (currentPlayer == players.length) {
                 currentPlayer = 0;
             }
-            tempToTop = players[currentPlayer].choose(cardsToTop);
             
             
         //}

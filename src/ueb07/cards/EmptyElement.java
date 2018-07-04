@@ -7,7 +7,7 @@ package ueb07.cards;
  */
 public class EmptyElement implements List {
 
-    //TODO implement according to JavaDoc
+    //TODO DONE implement according to JavaDoc
     /**
      * Returns the payload of the element. A call to assert ensures that this
      * method is not called for the empty element.
@@ -16,10 +16,11 @@ public class EmptyElement implements List {
      */
     @Override
     public Card getCard() {
+        assert(this != null);
         return null;
     }
 
-    //TODO implement according to JavaDoc
+    //TODO DONE implement according to JavaDoc
     /**
      * Returns the next element. A call to assert ensures that this method is
      * not called for the empty element.
@@ -28,6 +29,7 @@ public class EmptyElement implements List {
      */
     @Override
     public List getNext() {
+        assert(this != null);
         return null;
     }
 
@@ -139,9 +141,9 @@ public class EmptyElement implements List {
      * @return all elements of the list, seperatedy by a comma, without a comma
      * at the end
      */
-    //TODO String for empty list hsould be empty
+    //TODO DONEString for empty list hsould be empty
     @Override
     public String toString() {
-        return "End";
+        return "";
     }
 }

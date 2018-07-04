@@ -133,7 +133,8 @@ public class ListElement implements List {
             ListElement newElement = new ListElement(card);
             newElement.setNext(this);
             return newElement;
-            //TODO Done get rid of the check this.next == null (this will shorten the method)         
+            //TODO Done get rid of the check this.next == null (this will shorten the method)     
+        
         } else {
             this.next = this.next.add(card);
             return this;
@@ -170,15 +171,13 @@ public class ListElement implements List {
         if (value >= 7 && value <= Card.getHighestValue()) {
             if (this.value.getValue() == value) {
                 return this.value;
-                //TODO get rid of this.next != null check
-            } else if (this.next != null) {
-                return this.next.getFirstCardWithValue(value);
+                //TODO DONE get rid of this.next != null check
             } else {
-                return null;
+                return this.next.getFirstCardWithValue(value);
             }
-        } else {
-            return null; //TODO jsut return null once
         }
+        return null; //TODO DDNE jsut return null once
+
     }
 
     /**
@@ -190,9 +189,9 @@ public class ListElement implements List {
     @Override
     public List remove(Card value) {//????
         assert (value != null); // need?
+
+        //TODO DONE not a good idea: do not create EmptyElement here
         if (this.value == value) {
-            return new EmptyElement(); //TODO not a good idea: do not create EmptyElement here
-        } else if (this.value == value) {
             return this.next;
         } else {
             this.next = this.next.remove(value);
@@ -207,12 +206,12 @@ public class ListElement implements List {
      * @param idx index of the element that should be removed
      * @return new head of the list
      */
-    //TODO Done nothing should happen when idx is not valid
+    //TODO DONE nothing should happen when idx is not valid
     @Override
     public List remove(int idx) {
-        if(idx >= 7 && idx < Card.getHighestValue());
+        if (idx >= 7 && idx < Card.getHighestValue());
         return remove(this.getCardAt(idx));
-       
+
     }
 
     /**

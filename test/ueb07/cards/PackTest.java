@@ -227,4 +227,12 @@ public class PackTest {
         pack.remove(ACE_HEARTS);
         assertEquals(0, pack.size());
     }
+    @Test
+    public void testRomoveIsNotThere() {
+         Pack cards = new Pack(new Card[]{NINE_DIAMONDS, QUEEN_HEARTS, QUEEN_SPADES});
+
+        assertEquals(3, cards.size());
+        cards.remove(ACE_HEARTS);
+        assertEquals(3, cards.size());
+    }
 }
