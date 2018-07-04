@@ -21,7 +21,8 @@ public class GameTest {
         {Card.NINE_DIAMONDS, Card.QUEEN_CLUBS, Card.KING_DIAMONDS},
         {Card.TEN_DIAMONDS, Card.TEN_CLUBS, Card.ACE_CLUBS}};
         Game gameTest = new Game(packs, "rcr");
-        gameTest.nextPlayer( 0, gameTest.getCardsToTop() ,gameTest.getCountCantLay());
+        gameTest.doTurn(gameTest.getPlayers()[0], gameTest.getCardsToTop());
+        gameTest.nextPlayer(1, gameTest.getCardsToTop(), gameTest.getCountCantLay());
         assertArrayEquals(new Card[]{Card.EIGHT_SPADES}, gameTest.getCardsToTop());
         assertArrayEquals(new Card[]{Card.KING_HEARTS, Card.ACE_DIAMONDS}, gameTest.getPlayers()[0].getPack().toArray());
     }
@@ -32,11 +33,10 @@ public class GameTest {
         {Card.SEVEN_CLUBS, Card.SEVEN_DIAMONDS, Card.SEVEN_HEARTS},
         {Card.TEN_CLUBS, Card.TEN_DIAMONDS, Card.ACE_CLUBS}};
         Game gameTest = new Game(packs, "rcr");
-        gameTest.nextPlayer(0, gameTest.getCardsToTop(), gameTest.getCountCantLay());
-        gameTest.nextPlayer(1, gameTest.getCardsToTop(), gameTest.getCountCantLay());
-         System.out.print(Arrays.toString(gameTest.getCardsToTop()));
+        gameTest.doTurn(gameTest.getPlayers()[0], gameTest.getCardsToTop());
+        gameTest.nextPlayer(2, gameTest.getCardsToTop(), gameTest.getCountCantLay());
+        //System.out.print(Arrays.toString(gameTest.getCardsToTop()));
         assertArrayEquals(new Card[]{Card.EIGHT_SPADES}, gameTest.getCardsToTop());
-       
         assertEquals(1, gameTest.getCountCantLay());
         assertArrayEquals(new Card[]{Card.SEVEN_CLUBS, Card.SEVEN_DIAMONDS, Card.SEVEN_HEARTS}, gameTest.getPlayers()[1].getPack().toArray());
     }
@@ -54,8 +54,8 @@ public class GameTest {
 
     @Test
     public void testNextPlayerNormalSituation() {
-        Card[][] packs = new Card[][]{{Card.EIGHT_SPADES, Card.KING_HEARTS, Card.ACE_DIAMONDS}, 
-            {Card.NINE_DIAMONDS, Card.QUEEN_CLUBS,
+        Card[][] packs = new Card[][]{{Card.EIGHT_SPADES, Card.KING_HEARTS, Card.ACE_DIAMONDS},
+        {Card.NINE_DIAMONDS, Card.QUEEN_CLUBS,
             Card.KING_DIAMONDS}, {Card.TEN_DIAMONDS, Card.TEN_CLUBS, Card.ACE_CLUBS}};
         Game gameTest = new Game(packs, "rcr");
         gameTest.doTurn(gameTest.getPlayers()[0], gameTest.getCardsToTop());
@@ -109,7 +109,7 @@ public class GameTest {
     @Test
     public void testNextPlayerAcePlaced() {
         Card[][] packs = new Card[][]{{Card.JACK_DIAMONDS, Card.QUEEN_CLUBS, Card.ACE_SPADES},
-        {Card.SEVEN_CLUBS, Card.SEVEN_DIAMONDS, Card.SEVEN_HEARTS}, 
+        {Card.SEVEN_CLUBS, Card.SEVEN_DIAMONDS, Card.SEVEN_HEARTS},
         {Card.TEN_CLUBS, Card.TEN_DIAMONDS, Card.KING_DIAMONDS}};
         Game gameTest = new Game(packs, "crc");
         gameTest.doTurn(gameTest.getPlayers()[0], gameTest.getCardsToTop());
@@ -124,19 +124,21 @@ public class GameTest {
         assertEquals(0, nextPlayer3);
         assertArrayEquals(new Card[]{Card.QUEEN_CLUBS}, gameTest.getCardsToTop());
     }
+
     @Test
     public void tesToString() {
         Card[][] packs = new Card[][]{{Card.ACE_CLUBS, Card.ACE_DIAMONDS, Card.ACE_SPADES},
-        {Card.SEVEN_CLUBS, Card.SEVEN_DIAMONDS, Card.SEVEN_HEARTS}, 
+        {Card.SEVEN_CLUBS, Card.SEVEN_DIAMONDS, Card.SEVEN_HEARTS},
         {Card.TEN_CLUBS, Card.TEN_DIAMONDS, Card.TEN_DIAMONDS}};
         Game gameTest = new Game(packs, "ccr");
-       assertEquals("C0: ACE_CLUBS, ACE_DIAMONDS, ACE_SPADES", gameTest.getPlayers()[0].toString());
-       assertEquals("C1: SEVEN_CLUBS, SEVEN_DIAMONDS, SEVEN_HEARTS", gameTest.getPlayers()[1].toString());
-       assertEquals("R2: TEN_CLUBS, TEN_DIAMONDS, TEN_DIAMONDS", gameTest.getPlayers()[2].toString());
+        assertEquals("C0: ACE_CLUBS, ACE_DIAMONDS, ACE_SPADES", gameTest.getPlayers()[0].toString());
+        assertEquals("C1: SEVEN_CLUBS, SEVEN_DIAMONDS, SEVEN_HEARTS", gameTest.getPlayers()[1].toString());
+        assertEquals("R2: TEN_CLUBS, TEN_DIAMONDS, TEN_DIAMONDS", gameTest.getPlayers()[2].toString());
     }
+
     @Test
     public void testDealCards() {
-        
+
         Game gameTest = new Game(3);
         gameTest.dealCards();
         System.out.println(gameTest.getPlayers()[0].toString());

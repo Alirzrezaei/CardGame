@@ -172,7 +172,7 @@ public class Game {
     Player doTurn(Player player, Card[] cardsToTop) {
 
         assert (player != null);
-        // assert player.getPackSize() > 0;
+         assert player.getPackSize() > 0;
         Card[] TempToTop = null;
         TempToTop = player.choose(cardsToTop);
         if (TempToTop != null && TempToTop.length > 0) {
@@ -204,6 +204,7 @@ public class Game {
             System.out.println("OnTop: " + Arrays.toString(cardsOnTop) + "\t\t{" + players[currentPlayer].toString() + "}");
             countCantLay = 0;
         }
+          
         Card[] TempToTop = null;
         if (cardsToTop != null) {
             TempToTop = cardsToTop.clone();
