@@ -60,7 +60,7 @@ public class Dealer extends Player {
      */
     @Override
     public String toString() {
-        return "" + this.getName() + ": " + this.getPack().toString();
+        return "";
     }
 
 }

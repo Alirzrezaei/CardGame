@@ -8,7 +8,7 @@ import ueb07.cards.Card;
  * @author ite102770
  */
 public class CautiousGuy extends Player {
-
+    final String prefix = "C";
     /**
      * default constructor
      *
@@ -100,6 +100,6 @@ public class CautiousGuy extends Player {
 
     @Override
     public String toString() {
-        return "" + this.getName() + ": " + this.getPack().toString();
+        return "" + this.prefix;
     }
 }

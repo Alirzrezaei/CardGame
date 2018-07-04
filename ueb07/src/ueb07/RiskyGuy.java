@@ -9,7 +9,7 @@ import ueb07.cards.Card;
  * @author ite102770
  */
 public class RiskyGuy extends Player {
-
+    final String prefix = "R";
     /**
      * assign the given name to the name in the parent.
      *
@@ -98,6 +98,6 @@ public class RiskyGuy extends Player {
 
     @Override
     public String toString() {
-        return "" + this.getName() + ": " + this.getPack().toString();
+        return "" + this.prefix;
     }
 }
