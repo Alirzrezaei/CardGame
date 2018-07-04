@@ -40,12 +40,8 @@ public class Pack {
      * @return number of cards
      */
     public int size() {
-        //if (this.list != null) {
         return this.list.size();
-        //} else {
-        //   return 0;
-        // }
-        //return this.list.size();
+      
     }
 
     /**
@@ -66,7 +62,7 @@ public class Pack {
      */
     public void add(Card card) {
         assert (card != null) : "The card has no value";
-        list = list.add(card);
+        this.list = this.list.add(card);
     }
 
     /**

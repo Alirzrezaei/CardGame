@@ -40,7 +40,6 @@ public class EmptyElement implements List {
      */
     @Override
     public boolean isEmpty() {
-       // assert(this != null);
         return true; 
     }
 

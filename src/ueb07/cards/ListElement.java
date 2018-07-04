@@ -26,6 +26,7 @@ public class ListElement implements List {
      */
     ListElement(Card value) {
         this.value = value;
+        this.next = null;
     }
 
     /**
@@ -33,9 +34,10 @@ public class ListElement implements List {
      *
      * @param value
      */
-    ListElement(Card value, List next) {
+    ListElement(Card value, List list) {
+        
         this.value = value;
-        this.next = next;
+
     }
 
     /**
@@ -87,7 +89,6 @@ public class ListElement implements List {
      */
     @Override
     public boolean isEmpty() {
-
         return false;
     }
 
@@ -133,13 +134,10 @@ public class ListElement implements List {
             ListElement newElement = new ListElement(card);
             newElement.setNext(this);
             return newElement;
-            //TODO DONE get rid of the check this.next == null (this will shorten the method)   
-        }else if(card.ordinal() > this.value.ordinal() && this.next == null){
-           ListElement newElement = new ListElement(card);
-            this.setNext(newElement);
-            return this;     
+            //TODO DONE get rid of the check this.next == null (this will shorten the method)     
         } else {
-            return this.next.add(card);
+            this.next = this.next.add(card);
+            return this;
             
         }
     }
