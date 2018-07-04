@@ -205,7 +205,7 @@ public class ListElement implements List {
     public List remove(Card value) {
         assert (value != null);
         assert(this != null);
-        if ( this.value == value) {
+        if ( this.value == value && this.next == null) {
             return new EmptyElement();
         } else if (this.value == value) {
             return this.next;
