@@ -202,18 +202,16 @@ public class ListElement implements List {
      * @return head of the list
      */
     @Override
-    public List remove(Card value) {
-        assert (value != null);
-        assert(this != null);
-        if ( this.value == value && this.next == null) {
+    public List remove(Card value) {//????
+        assert (value != null); // need?
+        if (this.value == value && this.next == null) {
             return new EmptyElement();
         } else if (this.value == value) {
             return this.next;
-        } else{
+        } else {
             this.next = this.next.remove(value);
             return this;
         }
-       
     }
 
     /**
