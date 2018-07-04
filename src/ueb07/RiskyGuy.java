@@ -45,7 +45,7 @@ public class RiskyGuy extends Player {
             card = new Card[cardsToTop.length];
             while (j < super.getPackSize() && counter < hasEnough) {
                 playerCard = super.getPack().getCardAt(j);
-                if (super.getPack().getCardAt(j).hasHigherValue(cardValue)) {
+                if (getPack().getCardAt(j).hasHigherValue(cardValue)) {
                     hasEnough = hasEnoughCard(playerCard);
                     if (hasEnough >= cardsToTop.length && playerCard != null && playerCard.getValue()
                             == super.getPack().getCardAt(j).getValue()) {

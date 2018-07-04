@@ -88,9 +88,9 @@ public class Game {
         for (int i = 0; i < players.length; i++) {
             playerType = r.nextInt(2);
             if (playerType == 0) {
-                players[i] = new CautiousGuy("C" + i);
+                players[i] = new CautiousGuy("" + i); //TODO add prefix in the respective classes
             } else {
-                players[i] = new RiskyGuy("R" + i);
+                players[i] = new RiskyGuy("" + i); //TODO add prefix in the respective classes
             }
         }
 
@@ -114,9 +114,9 @@ public class Game {
         players = new Player[packs.length];
         for (int i = 0; i < players.length; i++) {
             if (riskType != null && riskType.charAt(i) == 'r') {
-                players[i] = new RiskyGuy("R" + i, packs[i]);
+                players[i] = new RiskyGuy("" + i, packs[i]);
             } else {
-                players[i] = new CautiousGuy("C" + i, packs[i]);
+                players[i] = new CautiousGuy("" + i, packs[i]);
             }
         }
     }
@@ -173,10 +173,10 @@ public class Game {
 
         assert player != null;
         assert player.getPackSize() > 0;
-        Card[] TempToTop = null;
-        TempToTop = player.choose(cardsToTop);
-        if (TempToTop != null && TempToTop.length > 0) {
-            cardsOnTop = TempToTop;
+        Card[] tempToTop = null;
+        tempToTop = player.choose(cardsToTop);
+        if (tempToTop != null && tempToTop.length > 0) {
+            cardsOnTop = tempToTop;
 
             countCantLay = 0;
         } else {
@@ -198,14 +198,15 @@ public class Game {
      * @param couldntLay number of player that had to skip so far
      * @return index of the player whose turn it is
      */
+    //TODO cardsOnTop should be empty when a new round starts (e.g. an ace was the card to top or none of the players can put down another card)
     int nextPlayer(int currentPlayer, Card[] cardsToTop, int couldntLay) {
         if (cardsToTop != null && cardsToTop[0].isAce()) {
             doTurn(players[currentPlayer], null);
             countCantLay = 0;
         }
-        Card[] TempToTop = null;
+        Card[] tempToTop = null; //TODO not needed, only ever written to, never read
         if (cardsToTop != null) {
-            TempToTop = cardsToTop.clone();
+            tempToTop = cardsToTop.clone();
         }
        // while (Arrays.equals(TempToTop, cardsToTop)) {
 
@@ -217,7 +218,7 @@ public class Game {
             if (currentPlayer == players.length) {
                 currentPlayer = 0;
             }
-            TempToTop = players[currentPlayer].choose(cardsToTop);
+            tempToTop = players[currentPlayer].choose(cardsToTop);
             
             
         //}
