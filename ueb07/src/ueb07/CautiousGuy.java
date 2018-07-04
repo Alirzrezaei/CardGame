@@ -3,7 +3,8 @@ package ueb07;
 import ueb07.cards.Card;
 
 /**
- * This class always chooses the minimum number of cards required for the Cautious Guy
+ * This class always chooses the minimum number of cards required for the
+ * Cautious Guy
  *
  * @author ite102770
  */
@@ -46,7 +47,7 @@ public class CautiousGuy extends Player {
         int hasEnough;
         Card playerCard;
         if (cardsToTop != null && super.getPackSize() > 0) {
-            Card[] temp = new Card[cardsToTop.length];
+            Card[] temp = new Card[cardsToTop.length];//store new card on top
             cardValue = cardsToTop[0].getValue();
             int j = 0;
             card = new Card[cardsToTop.length];
@@ -56,9 +57,8 @@ public class CautiousGuy extends Player {
                     hasEnough = hasEnoughCard(playerCard, cardValue);//number of same value in the pack
                     if (hasEnough >= cardsToTop.length && playerCard != null && playerCard.getValue()
                             == super.getPack().getCardAt(j).getValue()) {
-                        temp[counter] = super.getPack().getCardAt(j);
+                        temp[counter] = super.getPack().getCardAt(j);//store same value on pack to temp
                         counter++;
-                        j++;
                     } else {
                         j = j + hasEnough;
                     }
@@ -79,7 +79,6 @@ public class CautiousGuy extends Player {
             return card;
         }
         return null;
-
     }
 
     /**
@@ -97,8 +96,10 @@ public class CautiousGuy extends Player {
         }
         return hasCard;
     }
+
     /**
      * prints the details of the Cautious Guy
+     *
      * @return String format of output
      */
     @Override
