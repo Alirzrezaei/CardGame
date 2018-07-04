@@ -65,7 +65,7 @@ public class ListElement implements List {
      */
     @Override
     public Card getCard() {
-        assert (this != null);
+
         return this.value;
     }
 
@@ -77,8 +77,7 @@ public class ListElement implements List {
      */
     @Override
     public List getNext() {
-        assert (this != null);
-        //assert(this.next != null);
+
         return this.next;
     }
 
@@ -89,7 +88,7 @@ public class ListElement implements List {
      */
     @Override
     public boolean isEmpty() {
-        assert (this != null);
+
         return false;
     }
 
@@ -101,11 +100,8 @@ public class ListElement implements List {
     @Override
     public int size() {
         assert (this.value != null) : "There is not element in our list";
-        if (this.next == null) {
-            return 1;
-        } else {
-            return 1 + this.next.size();
-        }
+        return 1 + this.next.size();
+
     }
 
     /**
@@ -118,13 +114,9 @@ public class ListElement implements List {
     @Override
     public boolean contains(Card card) {
         assert (card != null) : "The card has no value";
-        if (this.getCard() == card) {
-            return true;
-        } else if (this.next != null) {
-            return this.next.contains(card);
-        } else {
-            return false;
-        }
+        return (this.getCard() == card)
+                || this.next.contains(card);
+
     }
 
     /**
@@ -138,11 +130,11 @@ public class ListElement implements List {
     @Override
     public List add(Card card) {
         assert (card != null);
-        assert (this != null);
         if (card.ordinal() <= this.value.ordinal()) {
             ListElement newElement = new ListElement(card);
             newElement.setNext(this);
             return newElement;
+            //TODO get rid of the check this.next == null (this will shorten the method)
         } else if (this.next == null) {//card is greater than this
             ListElement newElement = new ListElement();
             newElement.setValue(card);
@@ -159,14 +151,12 @@ public class ListElement implements List {
      *
      * @param idx index of the card to be returned
      * @return the card at the index, null, if the index is not valid
-     * //IndexOutOfBoundsException - if the index is out of range (index < 0 || index
-     * >= size())
      */
     @Override
     public Card getCardAt(int idx) {
         if (idx == 0) {
             return this.value;
-        } else if (idx > 0 && idx < this.size() && this.next != null) {
+        } else if (idx > 0) {
             return this.next.getCardAt(idx - 1);
         } else {
             return null;
@@ -182,16 +172,18 @@ public class ListElement implements List {
      */
     @Override
     public Card getFirstCardWithValue(int value) {
-        if (value >= 7 && value <= 14) {
+        //if you need to keep value >= 7 create method Card.getLowestValue()
+        if (value >= 7 && value <= Card.getHighestValue()) {
             if (this.value.getValue() == value) {
                 return this.value;
+                //TODO get rid of this.next != null check
             } else if (this.next != null) {
                 return this.next.getFirstCardWithValue(value);
             } else {
                 return null;
             }
         } else {
-            return null;
+            return null; //TODO jsut return null once
         }
     }
 
@@ -204,8 +196,8 @@ public class ListElement implements List {
     @Override
     public List remove(Card value) {//????
         assert (value != null); // need?
-        if (this.value == value && this.next == null) {
-            return new EmptyElement();
+        if (this.value == value) {
+            return new EmptyElement(); //TODO not a good idea: do not create EmptyElement here
         } else if (this.value == value) {
             return this.next;
         } else {
@@ -221,6 +213,7 @@ public class ListElement implements List {
      * @param idx index of the element that should be removed
      * @return new head of the list
      */
+    //TODO nothing should happen when idx is not valid
     @Override
     public List remove(int idx) {
         return remove(this.getCardAt(idx));

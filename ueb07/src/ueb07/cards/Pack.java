@@ -167,12 +167,11 @@ public class Pack {
      *
      * @param card card to be removed
      */
+    //TODO write a test where you create a pack with 3 elements, remove one that is not in there
     public void remove(Card card) {
         assert (card != null);
         assert (this.list != null);
-        // if (this.contains(card)) {
         list = this.list.remove(card);
-        //}
     }
 
     /**

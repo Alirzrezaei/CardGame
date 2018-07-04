@@ -103,6 +103,7 @@ public abstract class Player {
      *
      * @return Name and cards of the player in a single line
      */
+    //TODO toString should only be implemented in the superclass, not in CautiosuGuy, RiskyGuy or Dealer
     @Override
     public String toString() {
         return "" + this.getName() + ": " + this.getPack().toString();
