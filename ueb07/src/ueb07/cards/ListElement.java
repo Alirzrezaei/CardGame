@@ -133,11 +133,14 @@ public class ListElement implements List {
             ListElement newElement = new ListElement(card);
             newElement.setNext(this);
             return newElement;
-            //TODO Done get rid of the check this.next == null (this will shorten the method)     
-        
+            //TODO DONE get rid of the check this.next == null (this will shorten the method)   
+        }else if(card.ordinal() > this.value.ordinal() && this.next == null){
+           ListElement newElement = new ListElement(card);
+            this.setNext(newElement);
+            return this;     
         } else {
-            this.next = this.next.add(card);
-            return this;
+            return this.next.add(card);
+            
         }
     }
 
@@ -151,7 +154,7 @@ public class ListElement implements List {
     public Card getCardAt(int idx) {
         if (idx == 0) {
             return this.value;
-        } else if (idx > 0) {
+        } else if (idx > 0){
             return this.next.getCardAt(idx - 1);
         } else {
             return null;
