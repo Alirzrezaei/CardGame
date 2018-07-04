@@ -26,7 +26,6 @@ public class ListElement implements List {
      */
     ListElement(Card value) {
         this.value = value;
-        this.next = null;
     }
 
     /**
@@ -134,12 +133,7 @@ public class ListElement implements List {
             ListElement newElement = new ListElement(card);
             newElement.setNext(this);
             return newElement;
-            //TODO get rid of the check this.next == null (this will shorten the method)
-        } else if (this.next == null) {//card is greater than this
-            ListElement newElement = new ListElement();
-            newElement.setValue(card);
-            this.next = newElement;
-            return this;
+            //TODO Done get rid of the check this.next == null (this will shorten the method)         
         } else {
             this.next = this.next.add(card);
             return this;
@@ -213,10 +207,12 @@ public class ListElement implements List {
      * @param idx index of the element that should be removed
      * @return new head of the list
      */
-    //TODO nothing should happen when idx is not valid
+    //TODO Done nothing should happen when idx is not valid
     @Override
     public List remove(int idx) {
+        if(idx >= 7 && idx < Card.getHighestValue());
         return remove(this.getCardAt(idx));
+       
     }
 
     /**
