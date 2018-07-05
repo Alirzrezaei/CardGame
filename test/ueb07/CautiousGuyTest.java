@@ -204,7 +204,7 @@ public class CautiousGuyTest {
         Card[] cards = new Card[]{Card.EIGHT_SPADES, Card.KING_HEARTS, Card.ACE_DIAMONDS};
 
         Player player = new CautiousGuy("Fred", cards);
-         assertEquals("Fred: EIGHT_SPADES, KING_HEARTS, ACE_DIAMONDS", player.toString());
+         assertEquals("CFred: EIGHT_SPADES, KING_HEARTS, ACE_DIAMONDS", player.toString());
     }
     @Test
     public void testChoose_OnOnTop() {

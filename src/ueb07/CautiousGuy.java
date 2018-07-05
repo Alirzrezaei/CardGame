@@ -100,10 +100,6 @@ private final String prefix = "C";
         return hasCard;
     }
 
-    @Override
-    public String toString() {
-        return "" ;
-    }
 
     @Override
     public String getPrefix() {

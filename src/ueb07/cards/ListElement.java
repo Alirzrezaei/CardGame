@@ -26,7 +26,7 @@ public class ListElement implements List {
      */
     ListElement(Card value) {
         this.value = value;
-        this.next = null;
+        this.next = new EmptyElement();
     }
 
     /**
@@ -135,11 +135,9 @@ public class ListElement implements List {
             return newElement;
             //TODO DONE get rid of the check this.next == null (this will shorten the method)     
         } else {
-            if(this.next != null){
-                this.next = this.next.add(card);
-            }
+             this.next = this.next.add(card);
+              
             return this;
-            
         }
     }
 
