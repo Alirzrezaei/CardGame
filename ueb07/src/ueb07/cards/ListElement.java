@@ -239,7 +239,7 @@ public class ListElement implements List {
      */
     @Override
     public String toString() {//print with coma at the end 
-        if (this.next == null) {
+        if (this.next.isEmpty()) {
             return "" + this.getCard();
         } else {
             return this.getCard() + ", " + this.next.toString();
