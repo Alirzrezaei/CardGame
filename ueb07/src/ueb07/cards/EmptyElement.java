@@ -143,6 +143,6 @@ public class EmptyElement implements List {
     //TODO String for empty list hsould be empty
     @Override
     public String toString() {
-        return "End";
+        return "";
     }
 }

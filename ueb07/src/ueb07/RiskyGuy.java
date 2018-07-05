@@ -98,10 +98,6 @@ private final String prefix= "R";
         return hasCard;
     }
 
-    @Override
-    public String toString() {
-        return "" ;
-    }
 
     @Override
     public String getPrefix() {
