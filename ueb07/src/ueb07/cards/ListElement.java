@@ -37,6 +37,7 @@ public class ListElement implements List {
     ListElement(Card value, List list) {
         
         this.value = value;
+        
 
     }
 
@@ -66,7 +67,7 @@ public class ListElement implements List {
      */
     @Override
     public Card getCard() {
-
+        assert(this.value != null);
         return this.value;
     }
 
@@ -78,7 +79,7 @@ public class ListElement implements List {
      */
     @Override
     public List getNext() {
-
+        assert(this.next != null);
         return this.next;
     }
 

@@ -91,6 +91,12 @@ public class ListElementTest {
         //assertTrue(ls.isEmpty());
         assertEquals(2, ls.size());
     }
-    
-    
+    @Test
+    public void testContainsElement() {
+        List ls = new ListElement(Card.JACK_HEARTS);
+        assertTrue(ls.contains(Card.JACK_HEARTS));
+        ls.add(Card.ACE_HEARTS);
+        assertTrue(ls.contains(Card.JACK_HEARTS));
+        
+    }  
 }
