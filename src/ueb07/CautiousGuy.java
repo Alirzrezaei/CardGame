@@ -8,7 +8,9 @@ import ueb07.cards.Card;
  * @author ite102770
  */
 public class CautiousGuy extends Player {
-    final String prefix = "C";
+private final String prefix = "C";
+
+    
     /**
      * default constructor
      *
@@ -27,7 +29,7 @@ public class CautiousGuy extends Player {
     public CautiousGuy(String name, Card[] cards) {
         super(name, cards);
     }
-
+   
     /**
      * Returns all the cards a player want to play. These cards are removed from
      * his/her pack. If a player cannot play any card, an empty array is
@@ -100,6 +102,12 @@ public class CautiousGuy extends Player {
 
     @Override
     public String toString() {
-        return "" + this.prefix;
+        return "" ;
+    }
+
+    @Override
+    public String getPrefix() {
+        //super.setPrefix(this.prefix);
+    return this.prefix;
     }
 }

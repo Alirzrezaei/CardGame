@@ -210,7 +210,7 @@ public class Game {
         
        // while (Arrays.equals(TempToTop, cardsToTop)) {
 
-            if (countCantLay == players.length) {
+            if (countCantLay == players.length -1) {
                 cardsOnTop = null;
                 countCantLay = 0;
                 return currentPlayer;
@@ -235,16 +235,20 @@ public class Game {
      */
     public void playGame() {
         currentPlayer = 0;
+        
 
         dealCards();
         //doTurn(players[currentPlayer], cardsOnTop);
         while (!hasWon(players[currentPlayer])) {
             doTurn(players[currentPlayer], cardsOnTop);
             System.out.println(Arrays.toString(cardsOnTop) + "\t\t" + players[currentPlayer].toString());
+            if(currentPlayer == 2){
+                System.out.print("\n\n");
+            }
             currentPlayer = nextPlayer(currentPlayer, cardsOnTop, countCantLay);
 
         }
-        System.out.print(players[currentPlayer].getName() + "WON!");
+        System.out.print(players[currentPlayer].getName() + " WON!");
     }
 
     @Override

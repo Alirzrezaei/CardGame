@@ -181,10 +181,10 @@ public class ListElement implements List {
 
     }
 
+    
     /**
      * Removes the given card from the list, if it is in the list.
      *
-     * @param card card to be removed
      * @return head of the list
      */
     @Override

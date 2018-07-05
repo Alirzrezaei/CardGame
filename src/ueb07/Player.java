@@ -9,7 +9,9 @@ import ueb07.cards.Pack;
  * @author klk
  */
 public abstract class Player {
-   
+    private String prefix;
+
+
     /**
      * name of the player
      */
@@ -19,7 +21,9 @@ public abstract class Player {
      * cards of the player in the pack
      */
     private final Pack pack;
-
+    
+    
+    
     /**
      * Creates a player with a given name.
      *
@@ -27,6 +31,7 @@ public abstract class Player {
      */
     public Player(String name) {
         this(name, new Card[0]);
+
     }
 
     /**
@@ -38,8 +43,11 @@ public abstract class Player {
     Player(String name, Card[] cards) {
         pack = new Pack(cards);
         this.name = name;
+        this.prefix = this.getPrefix();
     }
-
+    
+    public abstract String getPrefix();
+    
     /**
      * Returns the name of the player
      *
@@ -106,7 +114,7 @@ public abstract class Player {
     //TODO DONE toString should only be implemented in the superclass, not in CautiosuGuy, RiskyGuy or Dealer
     @Override
     public String toString() {
-        return ""  + this.getName() + ": " + this.getPack().toString();
+        return "" + this.getPrefix()+ "" + this.getName() + ": " + this.getPack().toString();
     }
 
 }
