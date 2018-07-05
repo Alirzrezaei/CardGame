@@ -35,10 +35,8 @@ public class ListElement implements List {
      * @param value
      */
     ListElement(Card value, List list) {
-        
-        this.value = value;
-        
-
+        this.value = value;   
+        this.next = list;
     }
 
     /**
