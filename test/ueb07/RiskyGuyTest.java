@@ -150,7 +150,7 @@ public class RiskyGuyTest {
     public void testChoose_OnEmptyOnTop() {
         Card[] cards = new Card[]{Card.EIGHT_SPADES, Card.KING_HEARTS, Card.ACE_DIAMONDS};
 
-        Player player = new CautiousGuy("Fred", cards);
+        Player player = new RiskyGuy("Fred", cards);
         Card[] chosen = player.choose(null);
 
         assertArrayEquals(new Card[]{Card.EIGHT_SPADES}, chosen);
@@ -160,8 +160,8 @@ public class RiskyGuyTest {
     public void testToString() {
         Card[] cards = new Card[]{Card.EIGHT_SPADES, Card.KING_HEARTS, Card.ACE_DIAMONDS};
 
-        Player player = new CautiousGuy("Fred", cards);
-         assertEquals("Fred: EIGHT_SPADES, KING_HEARTS, ACE_DIAMONDS", player.toString());
+        Player player = new RiskyGuy("Fred", cards);
+         assertEquals("RFred: EIGHT_SPADES, KING_HEARTS, ACE_DIAMONDS", player.toString());
     }
   
     
