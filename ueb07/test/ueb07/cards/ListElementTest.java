@@ -95,8 +95,7 @@ public class ListElementTest {
     public void testContainsElement() {
         List ls = new ListElement(Card.JACK_HEARTS);
         assertTrue(ls.contains(Card.JACK_HEARTS));
-        ls.add(Card.ACE_HEARTS);
-        assertTrue(ls.contains(Card.JACK_HEARTS));
-        
+        ls = ls.add(Card.ACE_HEARTS);
+        assertTrue(ls.contains(Card.JACK_HEARTS));      
     }  
 }
