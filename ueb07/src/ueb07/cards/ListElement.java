@@ -135,7 +135,9 @@ public class ListElement implements List {
             return newElement;
             //TODO DONE get rid of the check this.next == null (this will shorten the method)     
         } else {
-            this.next = this.next.add(card);
+            if(this.next != null){
+                this.next = this.next.add(card);
+            }
             return this;
             
         }
