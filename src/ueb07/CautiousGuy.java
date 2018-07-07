@@ -8,7 +8,7 @@ import ueb07.cards.Card;
  * @author ite102770
  */
 public class CautiousGuy extends Player {
-private final String prefix = "C";
+
 
     
     /**
@@ -17,7 +17,7 @@ private final String prefix = "C";
      * @param name name of the player
      */
     public CautiousGuy(String name) {
-        super(name);
+        super( "C" +name);
     }
 
     /**
@@ -27,7 +27,7 @@ private final String prefix = "C";
      * @param cards on the pack of the player
      */
     public CautiousGuy(String name, Card[] cards) {
-        super(name, cards);
+        super("C" +name, cards);
     }
    
     /**
@@ -101,9 +101,5 @@ private final String prefix = "C";
     }
 
 
-    @Override
-    public String getPrefix() {
-        //super.setPrefix(this.prefix);
-    return this.prefix;
-    }
+   
 }

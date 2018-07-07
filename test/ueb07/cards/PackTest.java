@@ -228,11 +228,23 @@ public class PackTest {
         assertEquals(0, pack.size());
     }
     @Test
-    public void testRomoveIsNotThere() {
+    public void testRomoveAtWrongIndex() {
          Pack cards = new Pack(new Card[]{NINE_DIAMONDS, QUEEN_HEARTS, QUEEN_SPADES});
-
         assertEquals(3, cards.size());
-        cards.remove(ACE_HEARTS);
+        cards.add(ACE_HEARTS);
+        cards.removeAt(-1);
+        cards.removeAt(4);
+        cards.removeAt(5);
+        assertEquals(4, cards.size());
+        assertArrayEquals(new Card[]{NINE_DIAMONDS, QUEEN_HEARTS, QUEEN_SPADES, ACE_HEARTS}, cards.toArray());
+    }public void testRomoveAfterAdd() {
+         Pack cards = new Pack(new Card[]{NINE_DIAMONDS, QUEEN_HEARTS, QUEEN_SPADES});
         assertEquals(3, cards.size());
+        cards.add(ACE_HEARTS);
+        cards.removeAt(-1);
+        cards.removeAt(4);
+        cards.removeAt(5);
+        assertEquals(4, cards.size());
+        assertArrayEquals(new Card[]{NINE_DIAMONDS, QUEEN_HEARTS, QUEEN_SPADES, ACE_HEARTS}, cards.toArray());
     }
 }

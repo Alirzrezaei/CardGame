@@ -9,7 +9,7 @@ import ueb07.cards.Card;
  * @author ite102770
  */
 public class RiskyGuy extends Player {
-private final String prefix= "R";
+
 
 
     /**
@@ -18,7 +18,7 @@ private final String prefix= "R";
      * @param name
      */
     public RiskyGuy(String name) {
-        super(name);
+        super("R" + name);
     }
 
     /**
@@ -98,9 +98,4 @@ private final String prefix= "R";
         return hasCard;
     }
 
-
-    @Override
-    public String getPrefix() {
-        return this.prefix;
-    }
 }

@@ -16,7 +16,7 @@ public class EmptyElement implements List {
      */
     @Override
     public Card getCard() {
-        //assert(this != null);
+        assert(this != null);
         return null;
     }
 
@@ -29,7 +29,7 @@ public class EmptyElement implements List {
      */
     @Override
     public List getNext() {
-        //assert(this != null);
+        assert(this != null);
         return null;
     }
 
