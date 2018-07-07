@@ -63,9 +63,6 @@ public class Dealer extends Player {
         return "";
     }
 
-    @Override
-    public String getPrefix() {
-        return "Dealer";
-    }
+
 
 }

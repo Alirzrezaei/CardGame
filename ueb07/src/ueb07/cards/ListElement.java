@@ -35,7 +35,7 @@ public class ListElement implements List {
      * @param value
      */
     ListElement(Card value, List list) {
-        this.value = value;   
+        this.value = value;
         this.next = list;
     }
 
@@ -65,7 +65,7 @@ public class ListElement implements List {
      */
     @Override
     public Card getCard() {
-        assert(this.value != null);
+        assert (this.value != null);
         return this.value;
     }
 
@@ -77,7 +77,7 @@ public class ListElement implements List {
      */
     @Override
     public List getNext() {
-        assert(this.next != null);
+        assert (this.next != null);
         return this.next;
     }
 
@@ -135,8 +135,8 @@ public class ListElement implements List {
             return newElement;
             //TODO DONE get rid of the check this.next == null (this will shorten the method)     
         } else {
-             this.next = this.next.add(card);
-              
+            this.next = this.next.add(card);
+
             return this;
         }
     }
@@ -149,10 +149,12 @@ public class ListElement implements List {
      */
     @Override
     public Card getCardAt(int idx) {
-        if (idx == 0) {
-            return this.value;
-        } else if (idx > 0){
-            return this.next.getCardAt(idx - 1);
+        if (idx >= 0) {
+            if (idx == 0) {
+                return this.value;
+            } else {
+                return this.next.getCardAt(idx - 1);
+            }
         } else {
             return null;
         }
@@ -180,7 +182,6 @@ public class ListElement implements List {
 
     }
 
-    
     /**
      * Removes the given card from the list, if it is in the list.
      *
@@ -209,9 +210,18 @@ public class ListElement implements List {
     //TODO DONE nothing should happen when idx is not valid
     @Override
     public List remove(int idx) {
-        if (idx >= 7 && idx < Card.getHighestValue());
-        return remove(this.getCardAt(idx));
-
+       //if (idx >= 0 && idx < Card.getHighestValue());
+        //return remove(this.getCardAt(idx));
+        if(idx >= 0){
+            if(idx == 0){
+                return this.next;
+            }
+            else{
+                this.next = this.next.remove(idx - 1);
+                return this;
+            }
+        }
+        else return this;
     }
 
     /**
