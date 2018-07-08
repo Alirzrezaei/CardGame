@@ -28,7 +28,7 @@ public class RiskyGuy extends Player {
      * @param cards
      */
     public RiskyGuy(String name, Card[] cards) {
-        super(name, cards);
+        super("R" +name, cards);
     }
 
     @Override
