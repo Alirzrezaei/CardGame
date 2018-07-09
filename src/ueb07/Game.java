@@ -205,9 +205,10 @@ public class Game {
             countCantLay = 0;
             return currentPlayer;
         }
-
+        if(hasWon(players[currentPlayer])){
+            return currentPlayer;
+        }
         //TODO DONE not needed, only ever written to, never read
-        // while (Arrays.equals(TempToTop, cardsToTop)) {
         if (countCantLay == players.length) {
             cardsOnTop = null;
             countCantLay = 0;
@@ -218,7 +219,6 @@ public class Game {
             currentPlayer = 0;
         }
 
-        //}
         return currentPlayer;
     }
 
@@ -237,7 +237,7 @@ public class Game {
 
         do {
             doTurn(players[currentPlayer], cardsOnTop);
-            System.out.println(Arrays.toString(cardsOnTop) + "\t\t" + players[currentPlayer].toString());
+            System.out.println("OnTop: " + Arrays.toString(cardsOnTop) + "\t\t" + players[currentPlayer].toString());
             if (currentPlayer == 2) {
                 System.out.print("\n\n");
             }

@@ -203,14 +203,14 @@ public class PackTest {
     public void testToString() {
         Pack cards = new Pack(new Card[]{NINE_DIAMONDS, QUEEN_HEARTS, QUEEN_SPADES});
         assertEquals("NINE_DIAMONDS, QUEEN_HEARTS, QUEEN_SPADES", cards.toString());
-        
+
     }
 
     @Test
     public void testToString_Sorting() {
         Card[] cards = new Card[]{QUEEN_HEARTS, NINE_DIAMONDS, QUEEN_SPADES};
         Pack pack = new Pack(cards);
-        assertArrayEquals(new Card[]{NINE_DIAMONDS,QUEEN_HEARTS,QUEEN_SPADES}, pack.toArray());
+        assertArrayEquals(new Card[]{NINE_DIAMONDS, QUEEN_HEARTS, QUEEN_SPADES}, pack.toArray());
     }
 
     @Test
@@ -227,9 +227,10 @@ public class PackTest {
         pack.remove(ACE_HEARTS);
         assertEquals(0, pack.size());
     }
+
     @Test
     public void testRomoveAtWrongIndex() {
-         Pack cards = new Pack(new Card[]{NINE_DIAMONDS, QUEEN_HEARTS, QUEEN_SPADES});
+        Pack cards = new Pack(new Card[]{NINE_DIAMONDS, QUEEN_HEARTS, QUEEN_SPADES});
         assertEquals(3, cards.size());
         cards.add(ACE_HEARTS);
         cards.removeAt(-1);
@@ -237,8 +238,12 @@ public class PackTest {
         cards.removeAt(5);
         assertEquals(4, cards.size());
         assertArrayEquals(new Card[]{NINE_DIAMONDS, QUEEN_HEARTS, QUEEN_SPADES, ACE_HEARTS}, cards.toArray());
-    }public void testRomoveAfterAdd() {
-         Pack cards = new Pack(new Card[]{NINE_DIAMONDS, QUEEN_HEARTS, QUEEN_SPADES});
+
+    }
+
+    @Test
+    public void testRomoveAfterAdd_InvalidIndex() {
+        Pack cards = new Pack(new Card[]{NINE_DIAMONDS, QUEEN_HEARTS, QUEEN_SPADES});
         assertEquals(3, cards.size());
         cards.add(ACE_HEARTS);
         cards.removeAt(-1);
@@ -246,5 +251,18 @@ public class PackTest {
         cards.removeAt(5);
         assertEquals(4, cards.size());
         assertArrayEquals(new Card[]{NINE_DIAMONDS, QUEEN_HEARTS, QUEEN_SPADES, ACE_HEARTS}, cards.toArray());
+    }
+
+    @Test
+    public void testRomoveAfterAdd() {
+        Pack cards = new Pack(new Card[]{NINE_DIAMONDS, QUEEN_HEARTS, QUEEN_SPADES});
+        assertEquals(3, cards.size());
+        cards.add(ACE_HEARTS);
+        cards.removeAt(1);
+        cards.removeAt(0);
+        cards.removeAt(2);
+        cards.removeAt(3);
+        assertEquals(2, cards.size());
+        assertArrayEquals(new Card[]{QUEEN_SPADES, ACE_HEARTS}, cards.toArray());
     }
 }

@@ -108,7 +108,9 @@ public abstract class Player {
     //TODO DONE toString should only be implemented in the superclass, not in CautiosuGuy, RiskyGuy or Dealer
     @Override
     public String toString() {
-        return "" + this.getName() + ": " + this.getPack().toString();
+
+        return "{"  + this.getName() + ": " + this.getPack().toString()+ "}";
+
     }
 
 }
