@@ -143,4 +143,5 @@ public class GameTest {
         int nextPlayer = gameTest.nextPlayer(2, new Card[]{Card.SEVEN_CLUBS, Card.SEVEN_SPADES}, 2);
         assertEquals(3, nextPlayer);
     }
+    
 }
