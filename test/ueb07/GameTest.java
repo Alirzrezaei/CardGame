@@ -1,6 +1,7 @@
 package ueb07;
 
 import java.util.Arrays;
+import org.junit.Assert;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import ueb07.Game.*;
@@ -48,13 +49,40 @@ public class GameTest {
          int nextPlayer = gameTest.nextPlayer(0, gameTest.getCardsToTop(), gameTest.getCountCantLay());
          assertEquals(1, nextPlayer);
          gameTest.doTurn(gameTest.getPlayers()[nextPlayer], gameTest.getCardsToTop());
+         assertArrayEquals(new Card[] {Card.JACK_CLUBS,Card.JACK_DIAMONDS,Card.JACK_SPADES}, gameTest.getCardsToTop());
          nextPlayer = gameTest.nextPlayer(nextPlayer, gameTest.getCardsToTop(), gameTest.getCountCantLay());
          assertEquals(2, nextPlayer);
          gameTest.doTurn(gameTest.getPlayers()[nextPlayer], gameTest.getCardsToTop());
+         assertArrayEquals(new Card[] {Card.JACK_CLUBS,Card.JACK_DIAMONDS,Card.JACK_SPADES}, gameTest.getCardsToTop());
          nextPlayer = gameTest.nextPlayer(nextPlayer, gameTest.getCardsToTop(), gameTest.getCountCantLay());
          assertEquals(0, nextPlayer);
          gameTest.doTurn(gameTest.getPlayers()[nextPlayer], gameTest.getCardsToTop());
          assertArrayEquals(new Card[] {Card.ACE_CLUBS, Card.ACE_DIAMONDS, Card.ACE_SPADES}, gameTest.getCardsToTop()); 
     }
-    
+    @Test
+    public void testNextPlayer_UnchangedPlayer_CurrentPlayerStartNextRound() {     
+         Card[][] packs = new Card[][]{{Card.JACK_CLUBS,Card.JACK_DIAMONDS,Card.JACK_SPADES,Card.KING_DIAMONDS, Card.ACE_CLUBS},
+        {Card.SEVEN_CLUBS, Card.SEVEN_DIAMONDS, Card.SEVEN_HEARTS,Card.TEN_CLUBS}, 
+        {Card.TEN_CLUBS, Card.TEN_DIAMONDS, Card.TEN_DIAMONDS}};
+         Game gameTest = new Game(packs, "rcr");
+         gameTest.doTurn(gameTest.getPlayers()[0], null);
+         assertArrayEquals(new Card[] {Card.JACK_CLUBS,Card.JACK_DIAMONDS,Card.JACK_SPADES}, gameTest.getCardsToTop());
+         int nextPlayer = gameTest.nextPlayer(0, gameTest.getCardsToTop(), gameTest.getCountCantLay());
+         assertEquals(1, nextPlayer);
+         gameTest.doTurn(gameTest.getPlayers()[nextPlayer], gameTest.getCardsToTop());
+         assertArrayEquals(new Card[] {Card.JACK_CLUBS,Card.JACK_DIAMONDS,Card.JACK_SPADES}, gameTest.getCardsToTop());
+         nextPlayer = gameTest.nextPlayer(nextPlayer, gameTest.getCardsToTop(), gameTest.getCountCantLay());
+         assertEquals(2, nextPlayer);
+         gameTest.doTurn(gameTest.getPlayers()[nextPlayer], gameTest.getCardsToTop());
+         assertArrayEquals(new Card[] {Card.JACK_CLUBS,Card.JACK_DIAMONDS,Card.JACK_SPADES}, gameTest.getCardsToTop());
+         nextPlayer = gameTest.nextPlayer(nextPlayer, gameTest.getCardsToTop(), gameTest.getCountCantLay());
+         assertEquals(0, nextPlayer);
+         gameTest.doTurn(gameTest.getPlayers()[nextPlayer], gameTest.getCardsToTop());
+         assertArrayEquals(new Card[] {Card.JACK_CLUBS,Card.JACK_DIAMONDS,Card.JACK_SPADES}, gameTest.getCardsToTop());
+         nextPlayer = gameTest.nextPlayer(nextPlayer, gameTest.getCardsToTop(), gameTest.getCountCantLay());
+         assertEquals(0, nextPlayer);
+         assertNull(gameTest.getCardsToTop());
+         gameTest.doTurn(gameTest.getPlayers()[nextPlayer], gameTest.getCardsToTop());
+         assertArrayEquals(new Card[] {Card.KING_DIAMONDS}, gameTest.getCardsToTop());
+    }   
 }
