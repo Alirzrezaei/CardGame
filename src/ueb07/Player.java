@@ -10,8 +10,6 @@ import ueb07.cards.Pack;
  */
 public abstract class Player {
 
-
-
     /**
      * name of the player
      */
@@ -21,9 +19,7 @@ public abstract class Player {
      * cards of the player in the pack
      */
     private final Pack pack;
-    
-    
-    
+
     /**
      * Creates a player with a given name.
      *
@@ -45,9 +41,7 @@ public abstract class Player {
         this.name = name;
 
     }
-    
 
-    
     /**
      * Returns the name of the player
      *
@@ -114,7 +108,7 @@ public abstract class Player {
     //TODO DONE toString should only be implemented in the superclass, not in CautiosuGuy, RiskyGuy or Dealer
     @Override
     public String toString() {
-        return ""  + this.getName() + ": " + this.getPack().toString();
+        return "" + this.getName() + ": " + this.getPack().toString();
     }
 
 }

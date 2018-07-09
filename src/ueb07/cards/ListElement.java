@@ -185,11 +185,12 @@ public class ListElement implements List {
     /**
      * Removes the given card from the list, if it is in the list.
      *
+     * @param value given card
      * @return head of the list
      */
     @Override
-    public List remove(Card value) {//????
-        assert (value != null); // need?
+    public List remove(Card value) {
+        assert (value != null);
 
         //TODO DONE not a good idea: do not create EmptyElement here
         if (this.value == value) {
@@ -210,18 +211,18 @@ public class ListElement implements List {
     //TODO DONE nothing should happen when idx is not valid
     @Override
     public List remove(int idx) {
-       //if (idx >= 0 && idx < Card.getHighestValue());
+        //if (idx >= 0 && idx < Card.getHighestValue());
         //return remove(this.getCardAt(idx));
-        if(idx >= 0){
-            if(idx == 0){
+        if (idx >= 0) {
+            if (idx == 0) {
                 return this.next;
-            }
-            else{
+            } else {
                 this.next = this.next.remove(idx - 1);
                 return this;
             }
+        } else {
+            return this;
         }
-        else return this;
     }
 
     /**

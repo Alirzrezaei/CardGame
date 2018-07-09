@@ -201,26 +201,23 @@ public class Game {
     //TODO DONE cardsOnTop should be empty when a new round starts (e.g. an ace was the card to top or none of the players can put down another card)
     int nextPlayer(int currentPlayer, Card[] cardsToTop, int couldntLay) {
         if (cardsToTop != null && cardsToTop[0].isAce()) {
-            cardsOnTop = null; 
+            cardsOnTop = null;
             countCantLay = 0;
-            return currentPlayer;      
+            return currentPlayer;
         }
-        
-       //TODO DONE not needed, only ever written to, never read
-        
-       // while (Arrays.equals(TempToTop, cardsToTop)) {
 
-            if (countCantLay == players.length) {
-                cardsOnTop = null;
-                countCantLay = 0;
-                return currentPlayer;
-            }
-            currentPlayer++;
-            if (currentPlayer == players.length) {
-                currentPlayer = 0;
-           }
-            
-            
+        //TODO DONE not needed, only ever written to, never read
+        // while (Arrays.equals(TempToTop, cardsToTop)) {
+        if (countCantLay == players.length) {
+            cardsOnTop = null;
+            countCantLay = 0;
+            return currentPlayer;
+        }
+        currentPlayer++;
+        if (currentPlayer == players.length) {
+            currentPlayer = 0;
+        }
+
         //}
         return currentPlayer;
     }
@@ -235,19 +232,18 @@ public class Game {
      */
     public void playGame() {
         currentPlayer = 0;
-        
 
         dealCards();
 
-        do{
+        do {
             doTurn(players[currentPlayer], cardsOnTop);
             System.out.println(Arrays.toString(cardsOnTop) + "\t\t" + players[currentPlayer].toString());
-            if(currentPlayer == 2){
+            if (currentPlayer == 2) {
                 System.out.print("\n\n");
             }
             currentPlayer = nextPlayer(currentPlayer, cardsOnTop, countCantLay);
 
-        }while (!hasWon(players[currentPlayer])); 
+        } while (!hasWon(players[currentPlayer]));
         System.out.println(players[currentPlayer].getName() + " WON!");
     }
 
