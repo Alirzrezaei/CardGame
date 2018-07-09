@@ -235,7 +235,7 @@ public class Game {
 
         dealCards();
 
-        do {
+        while (!hasWon(players[currentPlayer])){
             doTurn(players[currentPlayer], cardsOnTop);
             System.out.println("OnTop: " + Arrays.toString(cardsOnTop) + "\t\t" + players[currentPlayer].toString());
             if (currentPlayer == 2) {
@@ -243,7 +243,7 @@ public class Game {
             }
             currentPlayer = nextPlayer(currentPlayer, cardsOnTop, countCantLay);
 
-        } while (!hasWon(players[currentPlayer]));
+        } 
         System.out.println(players[currentPlayer].getName() + " WON!");
     }
 
