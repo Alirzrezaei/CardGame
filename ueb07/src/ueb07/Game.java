@@ -232,9 +232,7 @@ public class Game {
      */
     public void playGame() {
         currentPlayer = 0;
-
         dealCards();
-
         while (!hasWon(players[currentPlayer])){
             doTurn(players[currentPlayer], cardsOnTop);
             System.out.println("OnTop: " + Arrays.toString(cardsOnTop) + "\t\t" + players[currentPlayer].toString());
