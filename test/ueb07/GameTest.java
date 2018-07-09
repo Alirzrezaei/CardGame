@@ -96,7 +96,8 @@ public class GameTest {
         assertNull(gameTest.getCardsToTop());
         assertEquals(1, nextPlayer);
     }
-     @Test
+
+    @Test
     public void testNextPlayer_normalCase() {
         Card[][] packs = new Card[][]{{Card.JACK_CLUBS, Card.JACK_DIAMONDS, Card.KING_DIAMONDS, Card.ACE_CLUBS},
         {Card.SEVEN_CLUBS, Card.SEVEN_DIAMONDS, Card.QUEEN_CLUBS, Card.QUEEN_HEARTS},
@@ -111,6 +112,7 @@ public class GameTest {
         gameTest.doTurn(gameTest.getPlayers()[nextPlayer], gameTest.getCardsToTop());
         assertArrayEquals(new Card[]{Card.KING_DIAMONDS, Card.KING_SPADES}, gameTest.getCardsToTop());
     }
+
     @Test
     public void testNextPlayer_playedAce() {
         Card[][] packs = new Card[][]{{Card.QUEEN_HEARTS, Card.KING_DIAMONDS},
@@ -129,5 +131,16 @@ public class GameTest {
         nextPlayer = gameTest.nextPlayer(nextPlayer, gameTest.getCardsToTop(), gameTest.getCountCantLay());
         gameTest.doTurn(gameTest.getPlayers()[nextPlayer], gameTest.getCardsToTop());
         assertArrayEquals(new Card[]{Card.TEN_CLUBS}, gameTest.getCardsToTop());
+    }
+
+    @Test
+    public void testNextPlayer_CardOnTopNotNull() {
+        Card[][] packs = new Card[][]{{Card.JACK_CLUBS, Card.KING_DIAMONDS, Card.ACE_CLUBS},
+        {Card.SEVEN_CLUBS, Card.SEVEN_DIAMONDS, Card.QUEEN_HEARTS},
+        {Card.EIGHT_HEARTS, Card.TEN_HEARTS},
+        {Card.TEN_CLUBS, Card.KING_DIAMONDS, Card.KING_SPADES}};
+        Game gameTest = new Game(packs, "rcrc");
+        int nextPlayer = gameTest.nextPlayer(2, new Card[]{Card.SEVEN_CLUBS, Card.SEVEN_SPADES}, 2);
+        assertEquals(3, nextPlayer);
     }
 }
