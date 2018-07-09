@@ -24,9 +24,9 @@ public class GameTest {
         {Card.SEVEN_CLUBS, Card.SEVEN_DIAMONDS, Card.SEVEN_HEARTS}, 
         {Card.TEN_CLUBS, Card.TEN_DIAMONDS, Card.TEN_DIAMONDS}};
         Game gameTest = new Game(packs, "ccr");
-       assertEquals("C0: ACE_CLUBS, ACE_DIAMONDS, ACE_SPADES", gameTest.getPlayers()[0].toString());
-       assertEquals("C1: SEVEN_CLUBS, SEVEN_DIAMONDS, SEVEN_HEARTS", gameTest.getPlayers()[1].toString());
-       assertEquals("R2: TEN_CLUBS, TEN_DIAMONDS, TEN_DIAMONDS", gameTest.getPlayers()[2].toString());
+       assertEquals("{C0: ACE_CLUBS, ACE_DIAMONDS, ACE_SPADES}", gameTest.getPlayers()[0].toString());
+       assertEquals("{C1: SEVEN_CLUBS, SEVEN_DIAMONDS, SEVEN_HEARTS}", gameTest.getPlayers()[1].toString());
+       assertEquals("{R2: TEN_CLUBS, TEN_DIAMONDS, TEN_DIAMONDS}", gameTest.getPlayers()[2].toString());
     }
     @Test
     public void testDealCards() {
