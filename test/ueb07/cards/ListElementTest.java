@@ -97,5 +97,18 @@ public class ListElementTest {
         assertTrue(ls.contains(Card.JACK_HEARTS));
         ls = ls.add(Card.ACE_HEARTS);
         assertTrue(ls.contains(Card.JACK_HEARTS));      
-    }  
+    } 
+    @Test
+    public void testRemove_withIndex() {
+        List ls = new ListElement(Card.JACK_HEARTS);
+        ls = ls.add(Card.ACE_HEARTS);
+        assertEquals(2, ls.size());
+        ls = ls.add(Card.KING_HEARTS);
+        ls = ls.add(Card.EIGHT_DIAMONDS);
+        assertEquals(4, ls.size());
+        ls = ls.remove(3);
+        ls = ls.remove(3);
+        ls = ls.remove(-1);
+        assertArrayEquals(new Card[] {Card.EIGHT_DIAMONDS, Card.JACK_HEARTS, Card.KING_HEARTS}, ls.toArray());
+    } 
 }
