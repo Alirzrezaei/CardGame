@@ -107,7 +107,7 @@ public class EmptyElement implements List {
      * @return head of the list
      */
     @Override
-    public List remove(Card card) {//????
+    public List remove(Card card) {
         return this;
     }
 
@@ -119,7 +119,7 @@ public class EmptyElement implements List {
      * @return new head of the list
      */
     @Override
-    public List remove(int idx) {//from chapter
+    public List remove(int idx) {
         return this;
     }
 
